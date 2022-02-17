@@ -1,0 +1,50 @@
+.foot {
+    position: relative;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    /* backdrop-filter: blur(4px); */
+    padding: 1.1rem;
+}
+
+.enlaces {
+    display: flex;
+    flex-direction: row;
+}
+
+.ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+    padding: 0%;
+    margin: 0%;
+}
+
+.li {
+    border: 1px solid black;
+    list-style: none;
+    padding: 6px;
+}
+
+.enlace {
+    text-decoration: none;
+    color: black;
+    padding: 0%;
+    margin: 0%;
+}
+
+.span {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 4rem;
+    border: 1px solid black;
+    padding: 6px;
+}

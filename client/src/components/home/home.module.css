@@ -1,0 +1,10 @@
+.fondo {
+    background-image: url("https://www.bbva.com/wp-content/uploads/2017/08/bbva-balon-futbol-2017-08-11.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}

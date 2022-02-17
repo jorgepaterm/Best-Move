@@ -1,0 +1,72 @@
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+}
+
+.usuarioForm {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30rem;
+    height: 30rem;
+    gap: 1rem;
+    border-radius: 1rem;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.divInput {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    width: 6rem;
+}
+
+.input {
+    outline: none;
+    height: 2rem;
+    width: 18rem;
+    font-size: 100%;
+    border-radius: 0.4rem;
+    padding: 0 0.4rem;
+    border: 1px solid rgba(128, 128, 128, 0.246);
+}
+
+.btn {
+    width: 90%;
+    height: 2.8rem;
+    background-color: #2f3848;
+    border-radius: 0.4rem;
+    border: none;
+    color: white;
+    font-size: 120%;
+    transition: all 0.2s;
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: #13181f;
+}
+
+.NavLink {
+    margin-bottom: 0.3rem;
+    text-decoration: none;
+    color: black;
+}
