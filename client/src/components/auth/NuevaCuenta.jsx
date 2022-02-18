@@ -1,12 +1,28 @@
-import React, {useState} from "react";
-import {NavLink} from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+import {NavLink, Outlet, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {crearUsuario} from '../../redux/actions';
+import {crearUsuario, verificarCorreo} from '../../redux/actions';
+import {useJwt} from 'react-jwt';
 import s from './nuevaCuenta.module.css';
 
-const NuevaCuenta = () => {
+const token = localStorage.getItem('token');
+
+const NuevaCuenta = ({verificar}) => {
+
+    const {decodedToken} = useJwt(token);
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    // const verificar = useSelector(state => state.verificar);
+
+    if(verificar){
+        setTimeout(() => {
+
+            navigate(`/nueva-cuenta/verificar-correo`);
+        }, 1000);
+    }
 
     const [state, setState] = useState({
         nombre: '',
@@ -17,7 +33,7 @@ const NuevaCuenta = () => {
         confirmar: ''
     })
 
-    const {nombre, apellido, dni, email, contraseña, confirmar} = state
+    const {nombre, apellido, dni, email, contraseña, confirmar} = state;
 
     const handleChange = e => {
         setState({
@@ -44,7 +60,7 @@ const NuevaCuenta = () => {
         }
 
         // enviar formulario
-        dispatch(crearUsuario({nombre, apellido, dni, email, password: contraseña}))
+        dispatch(verificarCorreo({nombre, apellido, dni, email, password: contraseña}))
 
         // limpiar el formulario
         // setState({
@@ -138,7 +154,10 @@ const NuevaCuenta = () => {
 
                 <NavLink to='/' className={s.NavLink}>Iniciar sesión</NavLink>
 
+            <Outlet />
             </div>
+
+
         </div>
     )
 }

@@ -21,6 +21,8 @@ module.exports = {
             })
             usuario.save();
 
+            // genero 
+
             // Crear y firmar el jwt
             const payload = {
                 usuario: {

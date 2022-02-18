@@ -5,6 +5,8 @@ import {
     AUTENTICAR_USUARIO,
     USUARIO_AUTENTICADO,
     CERRAR_SESION,
+    VERIFICAR_CORREO,
+    ACTUALIZAR_VERIFICAR,
 } from '../types';
 
 export const crearUsuario = usuario => {
@@ -12,9 +14,7 @@ export const crearUsuario = usuario => {
 
         try{
 
-            const respuesta = await clienteAxios.post('/api/usuarios', usuario);
-
-            console.log(respuesta.data)
+            const respuesta = await clienteAxios.post('/api/usuarios?verificado=true', usuario);
 
             dispatch({
                 type: CREAR_USUARIO,
@@ -78,3 +78,29 @@ export const cerrarSesion = () => {
         })
     }
 }
+
+export const verificarCorreo = (usuario) => {
+    return async (dispatch) => {
+
+        const respuesta = await clienteAxios.post('/api/usuarios', usuario);
+
+        if(respuesta.data.token){
+            console.log('entrooooo')
+            tokenAuth(respuesta.data.token);
+        }
+
+        dispatch({
+            type: VERIFICAR_CORREO,
+            payload: respuesta.data
+        })
+    }
+}
+
+// export const actualizarVerificar = num => {
+//     return (dispatch) => {
+//         dispatch({
+//             type: ACTUALIZAR_VERIFICAR,
+//             payload: num
+//         })
+//     }
+// }

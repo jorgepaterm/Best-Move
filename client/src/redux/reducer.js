@@ -3,6 +3,8 @@ import {
     AUTENTICAR_USUARIO,
     USUARIO_AUTENTICADO,
     CERRAR_SESION,
+    VERIFICAR_CORREO,
+    ACTUALIZAR_VERIFICAR,
 } from '../types';
 
 const initialState = {
@@ -10,6 +12,7 @@ const initialState = {
     token: localStorage.getItem('token'),
     autenticado: false,
     cargando: true,
+    verificar: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -40,6 +43,18 @@ const reducer = (state = initialState, action) => {
             autenticado: false,
             cargando: true,
         }
+
+        case VERIFICAR_CORREO:
+        return {
+            ...state,
+            verificar: action.payload.num
+        }
+
+        // case ACTUALIZAR_VERIFICAR: return {
+        //     ...state,
+        //     verificar: action.payload,
+        //     autenticado: false
+        // }
         
         default: return state;
     }
