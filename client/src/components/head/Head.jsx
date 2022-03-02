@@ -11,6 +11,7 @@ const Head = () => {
     const navigate = useNavigate();
 
     const usuario = useSelector(state => state.usuario);
+    const autenticado = useSelector(state => state.autenticado);
 
     const handleClick = () => {
         dispatch(cerrarSesion());
@@ -21,7 +22,7 @@ const Head = () => {
         <div>
             <div className={s.head}>
 
-                {usuario 
+                {usuario && autenticado
                 ?  (<div className={s.divNombre}>
                         <span>Hola {usuario.nombre}</span>
                         <button onClick={handleClick} >Cerrar sesión</button>

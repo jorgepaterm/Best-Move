@@ -2,8 +2,12 @@ const express = require('express');
 const conectarDB = require('./config/db');
 const cors = require('cors');
 const morgan = require('morgan');
+const socket = require('./socket');
 
 const app = express();
+
+const server = require('http').createServer(app);
+socket.connect(server);
 
 conectarDB();
 
@@ -21,6 +25,6 @@ app.use('/api/auth', require('./src/routes/auth'));
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });

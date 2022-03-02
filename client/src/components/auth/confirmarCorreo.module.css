@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.usuarioForm {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30rem;
+    height: 18rem;
+    gap: 1rem;
+    border-radius: 1rem;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.divInput {
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    width: 6rem;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    outline: none;
+    height: 2rem;
+    width: 18rem;
+    font-size: 100%;
+    border-radius: 0.4rem;
+    padding: 0 0.4rem;
+    border: 1px solid rgba(128, 128, 128, 0.246);
+}
+
+.btn {
+    width: 90%;
+    height: 2.8rem;
+    background-color: #2f3848;
+    border-radius: 0.4rem;
+    border: none;
+    color: white;
+    font-size: 120%;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: #13181f;
+}
+
+.NavLink {
+    margin-bottom: 0rem;
+    text-decoration: none;
+    color: black;
+}

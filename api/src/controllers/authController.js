@@ -1,6 +1,7 @@
 const Usuario = require('../models/usuario');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const {socket} = require('../../socket');
 
 module.exports = {
     autenticarUsuario: async (req, res) => {
@@ -17,8 +18,11 @@ module.exports = {
 
             const passCorrecto = await bcryptjs.compare(password, usuario.password);
             if(!passCorrecto){
-                return res.status(400).json({msg: 'El password es incorrecto'})
+                return res.status(400).json({msg: 'La contraseña es incorrecta'})
             }
+
+            // prueba sokect 
+            socket.io.emit('mensaje', 'Bienvenido');
 
             // Crear y firmar el jwt
             const payload = {

@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux';
 import React, {useEffect} from 'react';
 import './App.css';
 import {
@@ -14,6 +14,9 @@ import Tutoriales from './components/tutoriales/Tutoriales';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Login from './components/auth/Login';
 import ConfirmarCorreo from './components/auth/ConfirmarCorreo';
+
+// Importo socket
+import socket from './config/socket';
 
 import tokenAuth from './config/tokenAuth';
 import {usuarioAutenticado} from './redux/actions';
@@ -32,6 +35,11 @@ function App() {
   const verificar = useSelector(state => state.verificar)
 
   useEffect(() => {
+
+    socket.on('mensaje', (data) => {
+      console.log(data)
+    })
+
     dispatch(usuarioAutenticado());
   }, []);
 
@@ -45,11 +53,11 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/tutoriales' element={autenticado ? <Tutoriales /> : <Navigate to='/' />} />
         
-        <Route path='/nueva-cuenta' element={!autenticado && cargando ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} >
-          <Route path={`/nueva-cuenta/verificar-correo`} element={verificar ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
-        </Route>
+        <Route path='/nueva-cuenta' element={!autenticado && !cargando ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
 
-        <Route path='/' element={!autenticado && cargando ? <Login /> : <Navigate to='/home' />} />
+        <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
+
+        <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
         <Route path='*' element={<h1>Error 404</h1>} />
       
       </Routes>

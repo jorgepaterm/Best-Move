@@ -1,21 +1,30 @@
-import React, {useState} from "react";
-import {NavLink, useNavigate} from "react-router-dom";
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from "react";
+import {NavLink} from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
 import {autenticarUsuario} from '../../redux/actions';
 import s from './login.module.css';
+import AlertaError from "../alertaError/AlertaError";
 
 const Login = () => {
 
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(false);
+    
     const [state, setState] = useState({
         email: '',
         contraseña: ''
     })
-
+    
     const {email, contraseña} = state
+    
+    const alertaerror = useSelector(state => state.alertaerror);
+
+    useEffect(() => {
+        if(alertaerror){
+            setLoading(false);
+        }
+    }, [alertaerror])
 
     const handleChange = e => {
         setState({
@@ -27,6 +36,10 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
+        if(!alertaerror){
+            setLoading(true);
+        }
+
         // hacer las validaciones
         if(email.trim() === '' || 
         contraseña.trim() === ''){
@@ -34,20 +47,11 @@ const Login = () => {
         }
 
         // enviar formulario
-        dispatch(autenticarUsuario({email, password: contraseña}))
-
-        // limpiar el formulario
-        setState({
-            email: '',
-            contraseña: ''
-        })
-
-        alert('el usuario no existe');
-
-        navigate('/home');
+        dispatch(autenticarUsuario({email, password: contraseña}));
     }
 
     return (
+        <>
         <div className={s.container}>
             <div className={s.usuarioForm}>
 
@@ -56,7 +60,7 @@ const Login = () => {
                 <form className={s.form} onSubmit={handleSubmit}>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Email</label>
+                        <label className={s.label}>Email:</label>
                         <input 
                         className={s.input}
                         type="email"
@@ -67,7 +71,7 @@ const Login = () => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Contraseña</label>
+                        <label className={s.label}>Contraseña:</label>
                         <input 
                         className={s.input}
                         type="password"
@@ -77,7 +81,15 @@ const Login = () => {
                         placeholder="Escribe una contraseña..." />
                     </div>
 
-                    <input className={s.btn} type='submit' value='Entrar' />
+                    {
+                        !loading
+                        
+                        ? <input className={s.btn} type='submit' value='Entrar' />
+                    
+                        : <div className={s.btn}>
+                            <div className="loader" />
+                        </div>
+                    }
 
                 </form>
 
@@ -86,6 +98,10 @@ const Login = () => {
 
             </div>
         </div>
+
+        <AlertaError />
+
+        </>
     )
 }
 

@@ -7,11 +7,14 @@ import {
     CERRAR_SESION,
     VERIFICAR_CORREO,
     ACTUALIZAR_VERIFICAR,
+    ALERTA_ERROR,
+    RESET_ERROR,
 } from '../types';
 
 export const crearUsuario = usuario => {
     return async (dispatch) => {
 
+        console.log('action: ', usuario);
         try{
 
             const respuesta = await clienteAxios.post('/api/usuarios?verificado=true', usuario);
@@ -25,7 +28,10 @@ export const crearUsuario = usuario => {
 
         }
         catch(err){
-            console.log(err)
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
         }
     }
 }
@@ -44,7 +50,10 @@ export const autenticarUsuario = usuario => {
             dispatch(usuarioAutenticado());
         }
         catch(err){
-            console.log(err);
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
         }
     }
 }
@@ -66,7 +75,10 @@ export const usuarioAutenticado = () => {
             })
         }
         catch(err){
-            console.log(err);
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
         }
     }
 }
@@ -82,25 +94,54 @@ export const cerrarSesion = () => {
 export const verificarCorreo = (usuario) => {
     return async (dispatch) => {
 
-        const respuesta = await clienteAxios.post('/api/usuarios', usuario);
+        try{
 
-        if(respuesta.data.token){
-            console.log('entrooooo')
-            tokenAuth(respuesta.data.token);
+            const respuesta = await clienteAxios.post('/api/usuarios', usuario);
+    
+            if(respuesta.data.token){
+                tokenAuth(respuesta.data.token);
+            }
+    
+            respuesta.data.usuario = usuario;
+    
+            dispatch({
+                type: VERIFICAR_CORREO,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
         }
 
+    }
+}
+
+export const actualizarVerificar = arg => {
+    return (dispatch) => {
         dispatch({
-            type: VERIFICAR_CORREO,
-            payload: respuesta.data
+            type: ACTUALIZAR_VERIFICAR,
+            payload: arg
         })
     }
 }
 
-// export const actualizarVerificar = num => {
-//     return (dispatch) => {
-//         dispatch({
-//             type: ACTUALIZAR_VERIFICAR,
-//             payload: num
-//         })
-//     }
-// }
+export const resetError = () => {
+    return (dispatch) => {
+        dispatch({
+            type: RESET_ERROR,
+            payload: null
+        })
+    }
+}
+
+export const registroError = msg => {
+    return (dispatch) => {
+        dispatch({
+            type: ALERTA_ERROR,
+            payload: msg
+        })
+    }
+}
