@@ -7,6 +7,8 @@ import {
     ACTUALIZAR_VERIFICAR,
     ALERTA_ERROR,
     RESET_ERROR,
+    TRAER_CHATS,
+    SELECCIONAR_CHAT,
 } from '../types';
 
 const initialState = {
@@ -15,7 +17,10 @@ const initialState = {
     autenticado: false,
     cargando: true,
     verificar: null,
-    alertaerror: null
+    alertaerror: null,
+    contactos: null,
+    chats: null,
+    chatSelecionado: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -46,7 +51,10 @@ const reducer = (state = initialState, action) => {
             autenticado: false,
             cargando: false,
             alertaerror: null,
-            verificar: null
+            verificar: null,
+            contactos: null,
+            chats: null,
+            chatSelecionado: null
         }
 
         case VERIFICAR_CORREO:
@@ -71,6 +79,17 @@ const reducer = (state = initialState, action) => {
         case RESET_ERROR: return {
             ...state,
             alertaerror: null
+        }
+
+        case TRAER_CHATS: return {
+            ...state,
+            contactos: action.payload.usuarios.filter(e => e._id !== state.usuario._id),
+            chats: action.payload.chats
+        }
+
+        case SELECCIONAR_CHAT: return {
+            ...state,
+            chatSelecionado: action.payload
         }
         
         default: return state;

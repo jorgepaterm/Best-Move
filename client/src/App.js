@@ -8,12 +8,12 @@ import {
   Navigate
 } from "react-router-dom";
 import Home from './components/home/Home';
-import Foot from './components/foot/Foot';
 import Head from './components/head/Head';
 import Tutoriales from './components/tutoriales/Tutoriales';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Login from './components/auth/Login';
 import ConfirmarCorreo from './components/auth/ConfirmarCorreo';
+import Chats from './components/chat/Index';
 
 // Importo socket
 import socket from './config/socket';
@@ -57,12 +57,12 @@ function App() {
 
         <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
+        <Route path='/chat' element={<Chats />} />
+
         <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
         <Route path='*' element={<h1>Error 404</h1>} />
       
       </Routes>
-      
-      <Foot />
 
     </BrowserRouter>
   );

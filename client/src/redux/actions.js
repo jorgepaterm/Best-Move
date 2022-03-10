@@ -1,3 +1,4 @@
+import axios from 'axios';
 import clienteAxios from '../config/axios';
 import tokenAuth from '../config/tokenAuth';
 import {
@@ -9,6 +10,9 @@ import {
     ACTUALIZAR_VERIFICAR,
     ALERTA_ERROR,
     RESET_ERROR,
+    TRAER_CHATS,
+    SELECCIONAR_CHAT,
+    ENVIAR_MENSAJE,
 } from '../types';
 
 export const crearUsuario = usuario => {
@@ -142,6 +146,39 @@ export const registroError = msg => {
         dispatch({
             type: ALERTA_ERROR,
             payload: msg
+        })
+    }
+}
+
+// Traer los chats
+export const traerChats = () => {
+    return async (dispatch) => {
+        const respuesta = await clienteAxios('/api/chat')
+
+        dispatch({
+            type: TRAER_CHATS,
+            payload: respuesta.data
+        })
+    }
+}
+
+export const seleccionarChat = (chat) => {
+    return (dispatch) => {
+        dispatch({
+            type: SELECCIONAR_CHAT,
+            payload: chat
+        })
+    }
+}
+
+export const enviarMensaje = ({userId2, text}) => {
+    return async (dispatch) => {
+
+        const respuesta = await clienteAxios.post('/api/chat', {userId2, text});
+
+        dispatch({
+            type: ENVIAR_MENSAJE,
+            payload: respuesta.data
         })
     }
 }

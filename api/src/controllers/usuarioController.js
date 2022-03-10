@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     crearUsuario: async (req, res) => {
         
-        const {nombre, apellido, email, password, dni} = req.body;
+        const {nombre, apellido, email, password, dni, role} = req.body;
 
         try{
 
@@ -17,7 +17,8 @@ module.exports = {
                 apellido,
                 email,
                 password: newPassword,
-                dni
+                dni,
+                role,
             })
             usuario.save();
 
@@ -26,13 +27,14 @@ module.exports = {
             // Crear y firmar el jwt
             const payload = {
                 usuario: {
-                    id: usuario._id
+                    id: usuario._id,
+                    role: usuario.role
                 }
             };
 
             // firmar el jwt
             jwt.sign(payload, process.env.SECRETA, {
-                expiresIn: 3600
+                expiresIn: 54000
             }, (err, token) => {
                 if(err) throw err;
                 res.json({token});

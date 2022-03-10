@@ -24,14 +24,25 @@ const usuarioSchema = mongoose.Schema({
     },
     dni: {
         type: String,
-        required: true,
         unique: true,
         trim: true
     },
     bloqueado: {
         type: Boolean,
         default: false
-    }
+    },
+    role: {
+        type: String,
+        default: 'user',
+    },
+    date: {
+        type: Date,
+        default: new Date
+    },
+    chats: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'chat'
+    }]
 })
 
 module.exports = mongoose.model('usuario', usuarioSchema)

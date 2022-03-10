@@ -27,13 +27,14 @@ module.exports = {
             // Crear y firmar el jwt
             const payload = {
                 usuario: {
-                    id: usuario._id
+                    id: usuario._id,
+                    role: usuario.role
                 }
             };
 
             // firmar el jwt
             jwt.sign(payload, process.env.SECRETA, { 
-                expiresIn: 3600
+                expiresIn: 54000
             }, (err, token) => {
                 if(err) throw err;
                 res.json({token});
