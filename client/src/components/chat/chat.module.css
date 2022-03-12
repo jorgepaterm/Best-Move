@@ -2,16 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center ;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     background-color: white;
     margin: 1rem 1rem 1rem 0;
     /* height: 30rem; */
+    border-radius: 0rem 1rem 1rem 0rem;
     height: 83vh;
     width: 70vw;
 }
 
 .titulo {
-    border: 1px solid black;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@
 }
 
 .chat {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -51,8 +51,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2.5rem;
+    height: 2.8rem;
     margin: .3rem 0;
+    /* border-top: 2px solid grey; */
 }
 
 .input {

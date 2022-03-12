@@ -13,16 +13,13 @@ module.exports = {
             let usuario = await Usuario.findOne({email});
             
             if(!usuario){
-                res.status(404).json({msg: 'La cuenta no existe'});
+                return res.status(404).json({msg: 'La cuenta no existe'});
             }
 
             const passCorrecto = await bcryptjs.compare(password, usuario.password);
             if(!passCorrecto){
                 return res.status(400).json({msg: 'La contraseña es incorrecta'})
             }
-
-            // prueba sokect 
-            socket.io.emit('mensaje', 'Bienvenido');
 
             // Crear y firmar el jwt
             const payload = {

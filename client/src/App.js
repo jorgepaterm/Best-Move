@@ -15,9 +15,6 @@ import Login from './components/auth/Login';
 import ConfirmarCorreo from './components/auth/ConfirmarCorreo';
 import Chats from './components/chat/Index';
 
-// Importo socket
-import socket from './config/socket';
-
 import tokenAuth from './config/tokenAuth';
 import {usuarioAutenticado} from './redux/actions';
 
@@ -30,15 +27,11 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const autenticado = useSelector(state => state.autenticado)
-  const cargando = useSelector(state => state.cargando)
-  const verificar = useSelector(state => state.verificar)
+  const autenticado = useSelector(state => state.autenticado);
+  const cargando = useSelector(state => state.cargando);
+  const verificar = useSelector(state => state.verificar);
 
   useEffect(() => {
-
-    socket.on('mensaje', (data) => {
-      console.log(data)
-    })
 
     dispatch(usuarioAutenticado());
   }, []);
@@ -57,7 +50,7 @@ function App() {
 
         <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
-        <Route path='/chat' element={<Chats />} />
+        <Route path='/chat' element={autenticado ? <Chats /> : <Navigate to='/' />} />
 
         <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
         <Route path='*' element={<h1>Error 404</h1>} />

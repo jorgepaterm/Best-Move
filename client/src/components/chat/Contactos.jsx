@@ -1,37 +1,32 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './contactos.module.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {seleccionarChat} from '../../redux/actions';
+import {traerChat, contactoActual} from '../../redux/actions';
 
-const Contactos = () => {
+const Contactos = ({setContacto}) => {
+
+    const [userDos, setUserDos] = React.useState(null)
 
     const dispatch = useDispatch();
 
     const contactos = useSelector(state => state.contactos);
-    const chats = useSelector(state => state.chats);
+    const chat = useSelector(state => state.chat);
     const usuario = useSelector(state => state.usuario);
 
-    const [state, setState] = useState([
-        {nombre: 'jesuan', apellido: 'patermina'},
-        {nombre: 'jose', apellido: 'albarez'},
-        {nombre: 'albert', apellido: 'gomez'},
-        {nombre: 'keli', apellido: 'perez'},
-    ])
-
-    const handleClick = (id) => {
-        if(chats && chats.length){
-            let aux = true;
-            chats.forEach(u => {
-                 aux && u.users.forEach(e => {
-                    if(e === id){
-                        dispatch(seleccionarChat({mensajes: u.mensajes, userId2: id}));
-                        aux = false;
-                        return;
-                    }
-                });
-            });
-        }
+    const handleClick = (chats, userId2, obj) => {
+        dispatch(traerChat(chats[0]._id));
+        dispatch(contactoActual(userId2));
+        setUserDos({
+            idChat: chats[0]._id,
+            nombre: `${obj.nombre} ${obj.apellido}`
+        })
     }
+    
+    React.useEffect(()=>{
+        if(userDos?.idChat === chat?._id){
+            setContacto(userDos?.nombre);
+        }
+    }, [chat])
 
     return (
         <div className={s.container}>
@@ -39,7 +34,12 @@ const Contactos = () => {
                 {
                     contactos && contactos.map((e, i) => (
                         
-                            <li key={i} onClick={()=>handleClick(e._id)} className={s.li}>{e.nombre} {e.apellido}</li>
+                            <li
+                                key={i}
+                                onClick={()=>handleClick(e.chats, e._id, {nombre: e.nombre, apellido: e.apellido})}
+                                className={`${usuario && usuario.chatsNoLeidos?.includes(e.chats[0]._id) ? s.nuevoMensaje : s.li}`}
+                            >{e.nombre} {e.apellido}
+                            </li>
                         )
                     )
                 }

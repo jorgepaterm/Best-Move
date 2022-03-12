@@ -1,5 +1,5 @@
+import { createContext } from 'react';
 import io from 'socket.io-client';
 
-const socket = io(process.env.REACT_APP_BACKEND_URL);
-
-export default socket;
+export const socket = io(process.env.REACT_APP_BACKEND_URL);
+export const socketContext = createContext();

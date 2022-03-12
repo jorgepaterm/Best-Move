@@ -5,17 +5,17 @@ const { socket } = require('../../socket');
 module.exports = {
     añadirMensaje: async (req, res) => {
 
-        let { userId2, text } = req.body;
+        let { userId2, text, socketId } = req.body;
         const userId1 = req.usuario.id;
-
+        
         let mensajes;
-
+        
         if(req.usuario.role === 'user'){
-
+            
             let admin = await Usuario.findOne({role: 'admin'})
-
+            
             userId2 = admin._id;
-
+            
             mensajes = {
                 from: userId1,
                 to: admin._id,
@@ -23,6 +23,11 @@ module.exports = {
                 date: new Date
             }
         }
+
+        if(!userId2){
+            return res.status(404).json({msg: 'Hubo un error'});
+        }
+
         if(req.usuario.role === 'admin'){
 
             mensajes = {
@@ -40,22 +45,27 @@ module.exports = {
 
             var newId2 = id2.slice(0, Math.floor(id2.length / 2));
 
-            if (newId1 < newId2) return newId1 + newId2;
-            else return newId2 + newId1;
+            if (newId2 < newId1) return newId2 + newId1;
+            else return newId1 + newId2;
         }
 
         const idChat = juntarId(userId1.toString(), userId2.toString());
 
-        try {
+        const visto = {
+            [userId1]: null,
+            [userId2]: idChat
+        }
 
-            let chat = await Chat.findById(idChat);
+        try {
+            let chat = await Chat.findOne({_id: idChat});
             if (!chat) {
                 const users = [userId1, userId2]
 
                 const newChat = await new Chat({
                     _id: idChat,
                     users,
-                    mensajes
+                    mensajes,
+                    visto
                 });
                 await newChat.save();
 
@@ -66,27 +76,74 @@ module.exports = {
                 usuario.chats.length ? usuario.chats = [...usuario.chats, newChat._id] : usuario.chats = [newChat._id]
                 await usuario.save();
 
-                usuario2.chats.length ? usuario2.chats = [...usuario2.chats, newChat._id] : usuario2.chats = [newChat._id]
+                usuario2.chats.length ? usuario2.chats = [...usuario2.chats, newChat._id] : usuario2.chats = [newChat._id];
+                usuario2.chatsNoLeidos = [...usuario2.chatsNoLeidos, newChat._id];
+
                 await usuario2.save();
+
+                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1});
+                socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, nuevoMensaje: true, nuevoContacto: true});
 
                 return res.json({ msg: 'nuevo mensaje enviado' });
             }
 
             if (chat) {
 
+                let nuevoMensaje = false;
+
+                let usuario2 = await Usuario.findOne({_id: userId2});
+                if(usuario2.chatsNoLeidos.includes(chat._id) == false){
+                    console.log('no existe el chat');
+                    usuario2.chatsNoLeidos = [...usuario2.chatsNoLeidos, chat._id];
+                    await usuario2.save();
+                    nuevoMensaje = true;
+                }
+
                 chat.mensajes = [...chat.mensajes, mensajes];
-                chat.save();
+                chat.visto = visto;
+                await chat.save();
+
+                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1});
+                socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, nuevoMensaje});
 
                 return res.json({ msg: 'mensaje enviado' });
             }
         }
         catch (err) {
             console.log(err);
-            res.status(400).json({ msg: 'Hubo un error' })
+            res.status(400).json({ msg: 'Hubo un error' });
         }
     },
 
     obtenerMensajes: async (req, res) => {
+
+        const {id} = req.params;
+        const idUser = req.usuario.id;
+
+        try{
+
+            let usuarioFind = Usuario.findById(idUser)
+            let chatFind = Chat.findById(id);
+
+            const [chat, usuario] = await Promise.all([chatFind, usuarioFind])
+
+            chat.visto[idUser] = null;
+            await chat.save();
+
+            usuario.chatsNoLeidos = usuario.chatsNoLeidos.filter(e => e.toString() !== id);
+            await usuario.save();
+
+            const userId2 = chat.users[0] !== req.usuario.id ? chat.users[0] : chat.users[1];
+
+            res.json({chat, userId2, usuario});
+        }
+        catch(err){
+            console.log(err);
+            res.status(500).json({msg: 'Hubo un error'});
+        }
+    },
+
+    obtenerContactos: async (req, res) => {
 
         try{
 
@@ -94,18 +151,19 @@ module.exports = {
 
             const contactos = usuario.chats.map(e => e.users[0].toString() !== usuario._id.toString() ? e.users[0] : e.users[1]);
 
-            const users = await Usuario.find({_id: contactos});
+            const users = await Usuario.find({_id: contactos}).populate({ path: 'chats' });
             
             
             const usuarios = users.map(e => {
                 return {
                     _id: e._id,
                     nombre: e.nombre,
-                    apellido: e.apellido
+                    apellido: e.apellido,
+                    chats: e.chats
                 }
             });
-    
-            res.json({usuarios, chats: usuario.chats});
+
+            res.json({usuarios, visto: usuario.visto});
         }
         catch(err){
             console.log(err);

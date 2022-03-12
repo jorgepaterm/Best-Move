@@ -1,7 +1,8 @@
 const {Router} = require('express');
 const {
     añadirMensaje,
-    obtenerMensajes
+    obtenerMensajes,
+    obtenerContactos
 } = require('../controllers/chatController');
 const auth = require('../middleware/auth');
 
@@ -12,9 +13,14 @@ router.post('/',
     añadirMensaje
 )
 
-router.get('/',
+router.get('/:id',
     auth,
     obtenerMensajes
+)
+
+router.get('/',
+    auth,
+    obtenerContactos
 )
 
 module.exports = router;

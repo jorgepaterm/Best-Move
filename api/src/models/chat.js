@@ -11,6 +11,7 @@ const chatSchema = Schema({
         }
     ],
     mensajes: Array,
+    visto: Object,
 })
 
 module.exports = model('chat', chatSchema)

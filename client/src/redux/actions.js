@@ -10,9 +10,10 @@ import {
     ACTUALIZAR_VERIFICAR,
     ALERTA_ERROR,
     RESET_ERROR,
-    TRAER_CHATS,
-    SELECCIONAR_CHAT,
+    TRAER_CHAT,
     ENVIAR_MENSAJE,
+    TRAER_CONTACTOS,
+    CONTACTO_ACTUAL,
 } from '../types';
 
 export const crearUsuario = usuario => {
@@ -151,34 +152,46 @@ export const registroError = msg => {
 }
 
 // Traer los chats
-export const traerChats = () => {
+export const traerChat = (idChat) => {
     return async (dispatch) => {
-        const respuesta = await clienteAxios('/api/chat')
+        const respuesta = await clienteAxios(`/api/chat/${idChat}`)
 
         dispatch({
-            type: TRAER_CHATS,
+            type: TRAER_CHAT,
             payload: respuesta.data
         })
     }
 }
 
-export const seleccionarChat = (chat) => {
-    return (dispatch) => {
-        dispatch({
-            type: SELECCIONAR_CHAT,
-            payload: chat
-        })
-    }
-}
-
-export const enviarMensaje = ({userId2, text}) => {
+export const enviarMensaje = ({userId2, text, socketId}) => {
     return async (dispatch) => {
 
-        const respuesta = await clienteAxios.post('/api/chat', {userId2, text});
+        const respuesta = await clienteAxios.post('/api/chat', {userId2, text, socketId});
 
         dispatch({
             type: ENVIAR_MENSAJE,
             payload: respuesta.data
+        })
+    }
+}
+
+export const traerContactos = () => {
+    return async (dispatch) => {
+        const respuesta = await clienteAxios('/api/chat');
+
+        dispatch({
+            type: TRAER_CONTACTOS,
+            payload: respuesta.data
+        })
+    }
+}
+
+export const contactoActual = (id) => {
+    return (dispatch) => {
+
+        dispatch({
+            type: CONTACTO_ACTUAL,
+            payload: id
         })
     }
 }
