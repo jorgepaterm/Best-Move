@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const jwt = require('jsonwebtoken');
-const bcryptjs = require('bcryptjs');
+// const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuario');
 
 const enviarMail = async (req, res, next) => {
@@ -49,11 +49,11 @@ const enviarMail = async (req, res, next) => {
             html: `<b>codigo de verificación: ${num} </b>`, // html body
         });
 
-        const salt = await bcryptjs.genSalt(10);
-        const numCryp = await bcryptjs.hash(num, salt);
+        // const salt = await bcryptjs.genSalt(10);
+        // const numCryp = await bcryptjs.hash(num, salt);
 
         const payload = {
-            num: numCryp,
+            num,
             usuario: req.body
         };
 
@@ -62,7 +62,7 @@ const enviarMail = async (req, res, next) => {
             expiresIn: 3600
         }, (err, token) => {
             if(err) throw err;
-            res.json({info, token, numCryp});
+            res.json({info, token, num});
         })
     }
     catch(err){

@@ -9,6 +9,8 @@ module.exports = {
         const userId1 = req.usuario.id;
         
         let mensajes;
+
+        let date = new Date().toLocaleString();
         
         if(req.usuario.role === 'user'){
             
@@ -20,7 +22,7 @@ module.exports = {
                 from: userId1,
                 to: admin._id,
                 text,
-                date: new Date
+                date: date
             }
         }
 
@@ -34,7 +36,7 @@ module.exports = {
                 from: userId1,
                 to: userId2,
                 text,
-                date: new Date
+                date: date
             }
         }
 
