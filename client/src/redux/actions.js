@@ -1,4 +1,3 @@
-import axios from 'axios';
 import clienteAxios from '../config/axios';
 import tokenAuth from '../config/tokenAuth';
 import {
@@ -6,14 +5,23 @@ import {
     AUTENTICAR_USUARIO,
     USUARIO_AUTENTICADO,
     CERRAR_SESION,
+
     VERIFICAR_CORREO,
     ACTUALIZAR_VERIFICAR,
+
     ALERTA_ERROR,
     RESET_ERROR,
+
     TRAER_CHAT,
     ENVIAR_MENSAJE,
     TRAER_CONTACTOS,
     CONTACTO_ACTUAL,
+
+    OBTENER_DATOS,
+    AGREGAR_DATO,
+    ELIMINAR_DATO,
+    EDITAR_DATO,
+    CAMBIAR_ESTADO_DATO
 } from '../types';
 
 export const crearUsuario = usuario => {
@@ -192,6 +200,96 @@ export const contactoActual = (id) => {
         dispatch({
             type: CONTACTO_ACTUAL,
             payload: id
+        })
+    }
+}
+
+// Datos
+export const obtenerDatos = () => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios('/api/dato');
+    
+            dispatch({
+                type: OBTENER_DATOS,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const agregarDato = (datos) => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios.post('/api/dato', datos);
+    
+            dispatch({
+                type: AGREGAR_DATO,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const eliminarDato = id => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios.delete(`/api/dato/${id}`);
+    
+            dispatch({
+                type: ELIMINAR_DATO,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const editarDato = (id, datos) => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios.put(`/api/dato/${id}`, datos);
+    
+            dispatch({
+                type: EDITAR_DATO,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const stateEditarDato = (arg, dato) => {
+    return (dispatch) => {
+        dispatch({
+            type: CAMBIAR_ESTADO_DATO,
+            payload: {arg, dato}
         })
     }
 }

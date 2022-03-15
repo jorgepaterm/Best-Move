@@ -11,6 +11,7 @@
     border-radius: 0.5rem;
     transform: translateX(-110%);
     visibility: hidden;
+    z-index: 1;
 }
 @keyframes animacion {
     0% {transform: translateX(-110%);}

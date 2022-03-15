@@ -1,0 +1,94 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.agregarDato {
+    align-self: flex-start;
+    margin: 1rem 0rem 0rem 4rem;
+    padding: .7rem 1rem .7rem 1rem;
+    border-radius: .5rem;
+    border: none;
+    background-color: hsl(118, 62%, 50%);
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.agregarDato:hover {
+    background-color: hsl(118, 62%, 28%);
+}
+
+.tabla {
+    margin: 1rem 0rem 0rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: grey; */
+    width: 90vw;
+    gap: .3rem;
+}
+
+.fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    background-color: grey;
+    border-radius: .5rem;
+}
+
+.fila span {
+    font-size: 1.1rem;
+    margin: 0rem 1rem 0rem 1rem;
+    width: 12rem;
+    text-align: center;
+}
+.fila div {
+    margin: 0rem 1rem 0rem 1rem;
+    width: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn {
+    height: 2rem;
+    min-width: 2rem;
+    border-radius: .4rem;
+    margin: 0rem .1rem 0rem .1rem;
+    padding: .2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btnEditar {
+    background-color: rgb(158, 158, 158);
+}
+.btnEditar:hover {
+    background-color: rgb(77, 77, 77);
+}
+
+.btnEliminar {
+    background-color: rgb(238, 70, 70);
+}
+.btnEliminar:hover {
+    background-color: brown;
+}
+
+/* .equipos {
+    justify-self: flex-start;
+}
+
+.resultados {
+    justify-self: center;
+}
+
+.fechaHora {
+    justify-self: flex-end;
+} */

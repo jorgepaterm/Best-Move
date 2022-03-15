@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import s from './chat.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {enviarMensaje} from '../../redux/actions';
@@ -13,6 +13,7 @@ const Chat = ({contacto}) => {
     const userId2 = useSelector(state => state.userId2);
 
     const [text, setText] = useState('');
+    // const [fecha, setFecha] = useState([]);
 
     const onChange = e => {
         setText(e.target.value);
@@ -62,11 +63,17 @@ const Chat = ({contacto}) => {
                 {
                     chat && chat.mensajes.map((e, i) =>
                         (
-                            e.from === usuario._id
+                            <div key={i} className={s.containerChat}>
+                                <>{i === 0 || chat.mensajes[i].date.slice(0, 9) !== chat.mensajes[i-1].date.slice(0, 9)
+                                    ? <span className={s.fecha}>{e.date.slice(0, 9)}</span>
+                                    : null}
+                                </>
 
-                            ? <span key={i} className={s.mensajeDerecha}>{e.text}</span>
-
-                            : <span key={i} className={s.mensajeIzquierda}>{e.text}</span>
+                                <div className={`${e.from === usuario._id ? s.mensajeDerecha: s.mensajeIzquierda}`}>
+                                    <span className={s.text}>{e.text}</span>
+                                    <span className={s.hora}>{e.date.slice(10, e.date.length-3)}</span>
+                                </div>
+                            </div>
                         )
                     )
                 }

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {actualizarVerificar, crearUsuario, registroError} from '../../redux/actions';
-import bcryptjs from 'bcryptjs';
 import s from './login.module.css';
 import AlertaError from "../alertaError/AlertaError";
 
@@ -39,10 +38,9 @@ const ConfirmarCorreo = () => {
         if(state.trim() === '' ){
             return dispatch(registroError('Campo vacío'));
         }
-        
-        // confirmar que los dos codigos sean igual
-        const resultado = await bcryptjs.compare(state, verificarcorreo)
-        if(!resultado){
+
+        // confirmar que el codigo sea el mismo
+        if(state !== verificarcorreo){
 
             return !alertaerror && dispatch(registroError('Código incorrecto'));
         }
