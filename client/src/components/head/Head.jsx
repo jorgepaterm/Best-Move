@@ -33,7 +33,7 @@ const Head = () => {
                         <ul className={s.ul}>
                             <li className={s.li}><NavLink className={s.enlace} to='/home'>HOME</NavLink></li>
                             <li className={s.li}><NavLink className={s.enlace} to='/quienes-somos'>QUIENES SOMOS</NavLink></li>
-                            <li className={s.li}><NavLink className={s.enlace} to='/tutoriales'>TUTORIALES</NavLink></li>
+                            <li className={s.li}><NavLink className={s.enlace} to='/datos-del-dia'>DATOS DEL DÍA</NavLink></li>
                             {decodedToken?.usuario.role === 'user' && <li className={s.li}><NavLink className={s.enlace} to='/por-que-registrarme'>¿POR QUÉ REGISTRARME?</NavLink></li>}
                             <li className={s.li}><NavLink className={s.enlace} to='/chat'>{`${decodedToken?.usuario.role === 'admin' ? 'CHAT' : 'ESCRÍBENOS'}`}</NavLink></li>
                             {decodedToken?.usuario.role === 'admin' && <li className={s.li}><NavLink className={s.enlace} to='/agregar-dato'>AGREGAR DATO</NavLink></li>}
@@ -49,7 +49,6 @@ const Head = () => {
                         <ul className={s.ul}>
                             <li className={s.li}><NavLink className={s.enlace} to='/home'>HOME</NavLink></li>
                             <li className={s.li}><NavLink className={s.enlace} to='/quienes-somos'>QUIENES SOMOS</NavLink></li>
-                            <li className={s.li}><NavLink className={s.enlace} to='/tutoriales'>TUTORIALES</NavLink></li>
                             <li className={s.li}><NavLink className={s.enlace} to='/por-que-registrarme'>¿POR QUÉ REGISTRARME?</NavLink></li>
                         </ul>
 

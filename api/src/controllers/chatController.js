@@ -105,8 +105,10 @@ module.exports = {
                 chat.visto = visto;
                 await chat.save();
 
+                socket.io.emit(`${userId2}:notificacion`, {nuevoMensaje: true});
                 socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1});
                 socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, nuevoMensaje});
+                
 
                 return res.json({ msg: 'mensaje enviado' });
             }
