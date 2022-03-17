@@ -1,0 +1,60 @@
+.container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 1rem auto 1rem auto;
+    width: 52rem;
+}
+
+.card {
+    width: 24rem;
+    height: 16rem;
+    background-image: url('https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1.4rem;
+    position: relative;
+}
+
+.resultado {
+    background-color: white;
+    padding: .1rem .8rem .1rem .8rem;
+    border-radius: .4rem;
+}
+
+.equipos {
+    color: rgb(255, 255, 0);
+    position: absolute;
+    top: .4rem;
+}
+
+.fechaHora {
+    position: absolute;
+    right: 1rem;
+    bottom: .5rem;
+    display: flex;
+    gap: 1rem;
+    color: white;
+}
+
+@media (max-width: 850px) {
+
+    .container {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+        width: 30rem;
+    }
+
+    .card {
+        width: 26rem;
+        height: 17rem;
+    }
+}

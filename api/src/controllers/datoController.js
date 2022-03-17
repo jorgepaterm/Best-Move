@@ -3,6 +3,10 @@ const Dato = require('../models/dato');
 module.exports = {
     agregarDatos: async (req, res) => {
 
+        if(req.usuario.role !== 'admin'){
+            return res.status(401).json({msg: 'Usuario no autorizado'});
+        }
+
         const {equipoUno, equipoDos, fecha, hora, resultado} = req.body;
 
         const fechaHora = `F:${fecha} T:${hora}`;
@@ -27,6 +31,10 @@ module.exports = {
 
     eliminarDato: async (req, res) => {
 
+        if(req.usuario.role !== 'admin'){
+            return res.status(401).json({msg: 'Usuario no autorizado'});
+        }
+
         const {id} = req.params;
 
         try{
@@ -43,6 +51,10 @@ module.exports = {
     },
 
     editarDato: async (req, res) => {
+
+        if(req.usuario.role !== 'admin'){
+            return res.status(401).json({msg: 'Usuario no autorizado'});
+        }
 
         const {id} = req.params;
         const {equipoUno, equipoDos, fecha, hora, resultado} = req.body;
@@ -64,6 +76,8 @@ module.exports = {
                 new: true
             });
 
+            
+
             res.json({editado: true, msg: 'Editado con exito', newDato});
         }
         catch(err){
@@ -73,10 +87,6 @@ module.exports = {
     },
 
     obtenerDatos: async (req, res) => {
-
-        if(req.usuario.role !== 'admin'){
-            return res.status(401).json({msg: 'Usuario no autorizado'});
-        }
 
         try{
 

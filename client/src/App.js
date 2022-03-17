@@ -1,25 +1,28 @@
 import {useDispatch, useSelector} from 'react-redux';
-import React, {useEffect} from 'react';
+import React, {useEffect, useContext} from 'react';
 import './App.css';
 import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate
+  Navigate,
 } from "react-router-dom";
 import Home from './components/home/Home';
 import Head from './components/head/Head';
-import Tutoriales from './components/tutoriales/Tutoriales';
+// import Tutoriales from './components/tutoriales/Tutoriales';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Login from './components/auth/Login';
 import ConfirmarCorreo from './components/auth/ConfirmarCorreo';
 import Chats from './components/chat/Index';
 import AgreagarDato from './components/agregarDato/AgregarDato';
 import VentanaEmergente from './components/agregarDato/VentanaEmergente';
+import DatosDelDia from './components/datosDelDia/DatosDelDia';
 
 // import { useJwt } from "react-jwt";
 import tokenAuth from './config/tokenAuth';
 import {usuarioAutenticado} from './redux/actions';
+
+import {socketContext} from './config/socket';
 
 const token = localStorage.getItem('token');
 if(token){
@@ -28,19 +31,31 @@ if(token){
 
 function App() {
 
+  const socket = useContext(socketContext);
+
   const dispatch = useDispatch();
 
   const autenticado = useSelector(state => state.autenticado);
   // const cargando = useSelector(state => state.cargando);
   const verificar = useSelector(state => state.verificar);
-  // const usuario = useSelector(state => state.usuario);
+  const usuario = useSelector(state => state.usuario);
 
     // const {decodedToken} = useJwt(token);
 
   useEffect(() => {
+    console.log('entro al useEffect')
+    console.log(usuario)
+    socket.on(`${usuario?._id}:notificacion`, data => {
+      if(data.nuevoMensaje){
+        dispatch(usuarioAutenticado());
+      }
+    });
+    
+    if(!usuario) dispatch(usuarioAutenticado());
 
-    dispatch(usuarioAutenticado());
-  }, []);
+    return () => {socket.off();}
+
+  }, [usuario, socket]);
 
   return (
     <BrowserRouter>
@@ -50,7 +65,7 @@ function App() {
       <Routes>
 
         <Route path='/home' element={<Home />} />
-        <Route path='/tutoriales' element={autenticado ? <Tutoriales /> : <Navigate to='/' />} />
+        <Route path='/datos-del-dia' element={autenticado ? <DatosDelDia /> : <Navigate to='/' />} />
         
         <Route path='/nueva-cuenta' element={!autenticado ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
 
