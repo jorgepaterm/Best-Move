@@ -39,8 +39,6 @@ function App() {
   const verificar = useSelector(state => state.verificar);
   const usuario = useSelector(state => state.usuario);
 
-    // const {decodedToken} = useJwt(token);
-
   useEffect(() => {
     console.log('entro al useEffect')
     console.log(usuario)
