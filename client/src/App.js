@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import Home from './components/home/Home';
 import Head from './components/head/Head';
-// import Tutoriales from './components/tutoriales/Tutoriales';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Login from './components/auth/Login';
 import ConfirmarCorreo from './components/auth/ConfirmarCorreo';
