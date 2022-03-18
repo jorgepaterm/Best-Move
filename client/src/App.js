@@ -40,7 +40,7 @@ function App() {
   const usuario = useSelector(state => state.usuario);
 
   useEffect(() => {
-    console.log('entro al useEffect')
+    console.log('entro al useEffect');
     console.log(usuario)
     socket.on(`${usuario?._id}:notificacion`, data => {
       if(data.nuevoMensaje){
