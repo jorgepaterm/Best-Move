@@ -19,6 +19,9 @@ import {
     ELIMINAR_DATO,
     EDITAR_DATO,
     CAMBIAR_ESTADO_DATO,
+
+    OBTENER_USUARIOS,
+    BLOCK_USER,
 } from '../types';
 
 const initialState = {
@@ -34,6 +37,9 @@ const initialState = {
     datos: null,
     editardato: false,
     datoActual: null,
+    taernotificacion: false,
+    usuarios: null,
+    msg: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -134,6 +140,18 @@ const reducer = (state = initialState, action) => {
             ...state,
             editardato: action.payload.arg,
             datoActual: action.payload.dato
+        }
+
+        case OBTENER_USUARIOS: return {
+            ...state,
+            usuarios: action.payload
+        }
+
+        case BLOCK_USER: return {
+            ...state,
+            usuarios: state.usuarios.map(e => (
+                e._id.toString() !== action.payload.usuario._id.toString() ? e : action.payload.usuario
+            ))
         }
         
         default: return state;

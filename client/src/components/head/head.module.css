@@ -24,6 +24,23 @@
     margin: 0rem 1rem;
 }
 
+.enlaceChat {
+    text-decoration: none;
+    color: black;
+    padding: 0%;
+    margin: 0%;
+    position: relative;
+}
+.enlaceChat::before {
+    content: '';
+    display: block;
+    position: absolute;
+    padding: .5rem;
+    border-radius: 100%;
+    background-color: rgb(33, 119, 199);
+    right: -1.2rem;
+}
+
 .ul {
     display: flex;
     flex-direction: row;

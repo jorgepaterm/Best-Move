@@ -20,4 +20,13 @@ export const ELIMINAR_DATO = 'ELIMINAR_DATO';
 export const EDITAR_DATO = 'EDITAR_DATO';
 export const CAMBIAR_ESTADO_DATO = 'CAMBIAR_ESTADO_DATO';
 
+//cambiar estado para obtener la notificación
+export const TRAER_NOTIFICACION_MENSAJE = 'TRAER_NOTIFICACION_MENSAJE';
+
+// Usuario
+export const OBTENER_USUARIOS = 'OBTENER_USUARIOS';
+export const PASSWORD_EDIT_USER = 'PASSWORD_EDIT_USER';
+export const BLOCK_USER = 'BLOCK_USER';
+
+
 

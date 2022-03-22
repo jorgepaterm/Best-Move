@@ -5,7 +5,7 @@ const { socket } = require('../../socket');
 module.exports = {
     añadirMensaje: async (req, res) => {
 
-        let { userId2, text, socketId } = req.body;
+        let { userId2, text } = req.body;
         const userId1 = req.usuario.id;
         
         let mensajes;

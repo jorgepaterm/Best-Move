@@ -21,7 +21,11 @@ import {
     AGREGAR_DATO,
     ELIMINAR_DATO,
     EDITAR_DATO,
-    CAMBIAR_ESTADO_DATO
+    CAMBIAR_ESTADO_DATO,
+
+    OBTENER_USUARIOS,
+    PASSWORD_EDIT_USER,
+    BLOCK_USER,
 } from '../types';
 
 export const crearUsuario = usuario => {
@@ -291,5 +295,67 @@ export const stateEditarDato = (arg, dato) => {
             type: CAMBIAR_ESTADO_DATO,
             payload: {arg, dato}
         })
+    }
+}
+
+export const obtenerUsuarios = () => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios('/api/usuarios');
+    
+            dispatch({
+                type: OBTENER_USUARIOS,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const passwordEditUser = (id, newPassword) => {
+    return async (dispatch) => {
+        
+        try{
+            const respuesta = await clienteAxios.put('/api/usuarios/password-edit', {id, newPassword});
+    
+            dispatch({
+                type: PASSWORD_EDIT_USER,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const blockUser = (id, bloquear) => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios.put('/api/usuarios', {id, bloquear});
+
+            console.log(respuesta.data)
+    
+            dispatch({
+                type: BLOCK_USER,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
     }
 }

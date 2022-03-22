@@ -28,8 +28,8 @@ const usuarioSchema = mongoose.Schema({
         trim: true
     },
     bloqueado: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: 'false'
     },
     role: {
         type: String,

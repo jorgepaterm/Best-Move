@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin-top: 1rem;
+}
+
+.tabla {
+    border-radius: .5rem;
+    background-color: rgb(73, 121, 73);
+    height: 80vh;
+    width: 85vw;
+}
+
+.fila {
+    height: 4rem;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    align-items: center;
+    padding: 0 .5rem;
+    border-top: 2px solid grey;
+    gap: .5rem;
+}
+.fila span {
+    font-size: 1.1rem;
+}
+
+.email {
+    grid-column: 4 / 6;
+}
+
+.titulos {
+    border-top: 0;
+    height: 2.5rem;
+}
+
+.containerBtn {
+    display: flex;
+    gap: .3rem;
+}
+
+.btn {
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btnBlockRed {
+    padding: .19rem .1rem 0rem .1rem;
+    background-color: rgb(223, 76, 76);
+}
+.btnBlockRed:hover {
+    background-color: brown;
+}
+
+.btnBlockGreen {
+    padding: .19rem .1rem 0rem .1rem;
+    background-color: rgb(0, 197, 0);
+}
+.btnBlockGreen:hover {
+    background-color: green;
+}
+
+.btnEdit {
+    padding: 0rem .2rem;
+    background-color: grey;
+    font-size: .9rem;
+}
+
+@media (max-width: 1040px) {
+    .fila {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .creado {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .email {
+        grid-column: 3 / 5;
+    }
+}
+
+@media (max-width: 910px) {
+
+    .fila {
+        grid-template-columns: repeat(5, 1fr);
+        height: 5rem;
+        row-gap: 0rem;
+    }
+    
+    .email {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+    }
+}

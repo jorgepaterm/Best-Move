@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {
   BrowserRouter,
@@ -16,12 +16,13 @@ import Chats from './components/chat/Index';
 import AgreagarDato from './components/agregarDato/AgregarDato';
 import VentanaEmergente from './components/agregarDato/VentanaEmergente';
 import DatosDelDia from './components/datosDelDia/DatosDelDia';
+import TablaUsuarios from './components/tablaUsuarios/TablaUsuarios';
 
 // import { useJwt } from "react-jwt";
 import tokenAuth from './config/tokenAuth';
 import {usuarioAutenticado} from './redux/actions';
 
-import {socketContext} from './config/socket';
+// import {socketContext} from './config/socket';
 
 const token = localStorage.getItem('token');
 if(token){
@@ -30,7 +31,7 @@ if(token){
 
 function App() {
 
-  const socket = useContext(socketContext);
+  // const socket = useContext(socketContext);
 
   const dispatch = useDispatch();
 
@@ -40,19 +41,9 @@ function App() {
   const usuario = useSelector(state => state.usuario);
 
   useEffect(() => {
-    console.log('entro al useEffect');
-    console.log(usuario)
-    socket.on(`${usuario?._id}:notificacion`, data => {
-      if(data.nuevoMensaje){
-        dispatch(usuarioAutenticado());
-      }
-    });
     
-    if(!usuario) dispatch(usuarioAutenticado());
-
-    return () => {socket.off();}
-
-  }, [usuario, socket]);
+    dispatch(usuarioAutenticado());
+  }, []);
 
   return (
     <BrowserRouter>
@@ -62,6 +53,7 @@ function App() {
       <Routes>
 
         <Route path='/home' element={<Home />} />
+
         <Route path='/datos-del-dia' element={autenticado ? <DatosDelDia /> : <Navigate to='/' />} />
         
         <Route path='/nueva-cuenta' element={!autenticado ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
@@ -69,6 +61,8 @@ function App() {
         <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
         <Route path='/chat' element={autenticado ? <Chats /> : <Navigate to='/' />} />
+
+        <Route path='/tabla-usuarios/*' element={autenticado && usuario?.role === 'admin'  ? <TablaUsuarios /> : <Navigate to='/' />} />
 
         <Route path='/agregar-dato' element={autenticado ? <AgreagarDato /> : <Navigate to='/' />} >
           <Route path='ventana-emergente' element={<VentanaEmergente />} />
