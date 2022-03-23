@@ -24,7 +24,7 @@
     margin: 0rem 1rem;
 }
 
-.enlaceChat {
+/* .enlaceChat {
     text-decoration: none;
     color: black;
     padding: 0%;
@@ -35,11 +35,11 @@
     content: '';
     display: block;
     position: absolute;
-    padding: .5rem;
+    padding: .3rem;
     border-radius: 100%;
     background-color: rgb(33, 119, 199);
-    right: -1.2rem;
-}
+    left: -0.7rem;
+} */
 
 .ul {
     display: flex;
@@ -51,6 +51,9 @@
 .li {
     list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .enlace {
@@ -60,18 +63,101 @@
     margin: 0%;
 }
 
+.divMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    cursor: pointer;
+}
+
+.menuBurger {
+    background-color: black;
+    height: .18rem;
+    width: 1.7rem;
+    position: relative;
+    border-radius: 5rem;
+    cursor: pointer;
+}
+.menuBurger::before {
+    content: '';
+    display: block;
+    background-color: black;
+    height: .18rem;
+    width: 1.7rem;
+    position: absolute;
+    top: -0.5rem;
+    border-radius: 5rem;
+}
+.menuBurger::after {
+    content: '';
+    display: block;
+    background-color: black;
+    height: .18rem;
+    width: 1.7rem;
+    position: absolute;
+    bottom: -0.5rem;
+    border-radius: 5rem;
+}
+
+.divNombre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
 .divNombre span {
     margin: 0;
 }
-.divNombre button {
-    margin: 0 1rem;
-    background-color: #FF1700;
+
+.transition {
+    transition: all 1s;
+}
+
+.menu {
+    position: absolute;
+    top: 3.1rem;
+    right: .1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 1.5rem; */
+    /* padding: 1rem .8rem .8rem .8rem; */
+    background-color: white;
+    border-radius: 0rem 0rem .5rem .5rem;
+    width: 11rem;
+    height: 12rem;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s;
+}
+.menu li {
+    cursor: pointer;
+    margin: .8rem 0;
+}
+
+.heightMenu {
+    height: 6rem;
+}
+
+.menuHidden {
+    height: 0px;
+    padding: 0;
+}
+
+
+.btn {
+    background-color: #0B4619;
     border: none;
     padding: 0.3rem;
     border-radius: 0.5rem;
+    width: 7rem;
+    color: white;
     transition: all 0.2s;
 }
-.divNombre button:hover {
+.btn:hover {
     cursor: pointer;
-    background-color: #ca0000;
+    background-color: #082e11;
 }

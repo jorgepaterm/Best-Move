@@ -11,20 +11,26 @@
     background-color: rgb(73, 121, 73);
     height: 80vh;
     width: 85vw;
+    overflow: auto;
 }
 
 .fila {
-    height: 4rem;
+    height: 3rem;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     align-items: center;
     padding: 0 .5rem;
     border-top: 2px solid grey;
     gap: .5rem;
+    transition: all 0.3s;
 }
 .fila span {
     font-size: 1.1rem;
 }
+
+/* .filaAnimacion {
+    height: 15rem;
+} */
 
 .email {
     grid-column: 4 / 6;
@@ -68,14 +74,38 @@
     font-size: .9rem;
 }
 
+.nombre {
+    grid-column: 2 / 4;
+}
+
 @media (max-width: 1040px) {
     .fila {
         grid-template-columns: repeat(7, 1fr);
+        row-gap: 0rem;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .fila span {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .viewInfo {
+        height: 6rem;
+    }
+
+    .nombre {
+        grid-column: 1 / 3;
     }
 
     .creado {
-        visibility: hidden;
-        position: absolute;
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+    }
+    .creado::before {
+        content: 'Creado: ';
+        margin-right: .5rem;
     }
 
     .email {
@@ -83,16 +113,84 @@
     }
 }
 
-@media (max-width: 910px) {
+@media (max-width: 1000px) {
 
     .fila {
-        grid-template-columns: repeat(5, 1fr);
-        height: 5rem;
+        grid-template-columns: repeat(6, 1fr);
         row-gap: 0rem;
+        overflow: hidden;
     }
     
-    .email {
+    .viewInfo {
+        height: 9rem;
+    }
+
+    .creado {
         grid-column: 1 / 3;
         grid-row: 2 / 3;
     }
+
+    .dni {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+    }
+    .dni::before {
+        content: 'DNI:';
+        margin-right: .5rem;
+    }
+}
+
+@media (max-width: 830px) {
+    
+    .fila {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .viewInfo {
+        height: 13rem;
+    }
+
+    .email {
+        grid-column: 1 / 3;
+        grid-row: 4 / 5;
+    }
+    .email::before {
+        content: 'Email';
+        margin-right: .5rem;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .fila {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .viewInfo {
+        height: 16rem;
+    }
+
+    .apellido {
+        grid-column: 2 / 3;
+    }
+
+    .bloqueado {
+        grid-column: 1 / 2;
+        grid-row: 5 / 6;
+    }
+    .bloqueado::before {
+        content: 'Bloqueado:';
+        margin-right: .5rem;
+    }
+
+    .titulos .bloqueado {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    /* .containerBtn {
+        grid-column: 1 / 2;
+        grid-row: 6 / 7;
+        margin-bottom: .5rem;
+    } */
 }

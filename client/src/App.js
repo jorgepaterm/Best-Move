@@ -52,15 +52,16 @@ function App() {
 
       <Routes>
 
+        <Route path='/' element={!autenticado ? <Login /> : <Navigate to='/home' />} />
+        <Route path='/nueva-cuenta' element={!autenticado ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
+        
         <Route path='/home' element={<Home />} />
 
-        <Route path='/datos-del-dia' element={autenticado ? <DatosDelDia /> : <Navigate to='/' />} />
+        <Route path='/datos-del-dia' element={usuario && usuario?.bloqueado === 'false' && autenticado ? <DatosDelDia /> : <Navigate to='/' />} />
         
-        <Route path='/nueva-cuenta' element={!autenticado ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
-
         <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
-        <Route path='/chat' element={autenticado ? <Chats /> : <Navigate to='/' />} />
+        <Route path='/chat' element={usuario?.bloqueado === 'false' && autenticado ? <Chats /> : <Navigate to='/' />} />
 
         <Route path='/tabla-usuarios/*' element={autenticado && usuario?.role === 'admin'  ? <TablaUsuarios /> : <Navigate to='/' />} />
 
@@ -68,8 +69,10 @@ function App() {
           <Route path='ventana-emergente' element={<VentanaEmergente />} />
         </Route>
 
-        <Route path='/' element={!autenticado ? <Login /> : <Navigate to='/home' />} />
+        
         <Route path='*' element={<h1>Error 404</h1>} />
+
+        <Route path='/no-autorizado' element={usuario?.bloqueado === 'true' ? <h1>Usuario no autorizado</h1> : <Navigate to='/home' />} />
       
       </Routes>
 

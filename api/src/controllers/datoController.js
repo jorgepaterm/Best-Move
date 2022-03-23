@@ -1,4 +1,6 @@
 const Dato = require('../models/dato');
+const usuario = require('../models/usuario');
+const Usuario = require('../models/usuario');
 
 module.exports = {
     agregarDatos: async (req, res) => {
@@ -90,7 +92,14 @@ module.exports = {
 
         try{
 
-            const datos = await Dato.find();
+            const findUsuario = Usuario.findById(req.usuario.id);
+            const findDatos = Dato.find();
+
+            const [usuario, datos] = await Promise.all([findUsuario, findDatos])
+
+            if(usuario.bloqueado === 'true'){
+                return res.status(401).json({msg: 'Usuario no autorizado'});
+            }
 
             res.json(datos);
         }

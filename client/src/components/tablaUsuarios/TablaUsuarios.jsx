@@ -4,6 +4,7 @@ import {obtenerUsuarios, blockUser} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import VentanaEmergenteEditClave from './VentanaEmergente';
+import IconoChat from '../iconoChat/IconoChat';
 
 const TablaUsuarios = () => {
 
@@ -16,6 +17,13 @@ const TablaUsuarios = () => {
     const onClickBlock = (id, bloquear) => {
 
         dispatch(blockUser(id, bloquear === 'true' ? 'false' : 'true'));
+    }
+
+    const [info, setInfo] = React.useState()
+    
+    const openInfo = (id) => {
+        if(info === id) setInfo(null);
+        else setInfo(id);
     }
 
     const [idUser, setIdUser] = React.useState()
@@ -37,19 +45,19 @@ const TablaUsuarios = () => {
             <div className={s.container}>
                 <div className={s.tabla}>
                     <div className={`${s.fila} ${s.titulos}`}>
-                        <span className={s.creado}>AA/MM/DD</span>
-                        <span className={s.nombre}>nombre</span>
-                        <span className={s.apellido}>apellido</span>
-                        <span className={s.email}>email</span>
-                        <span className={s.dni}>dni</span>
-                        <span className={s.bloqueado}>bloqueado</span>
+                        <span className={s.creado}>Creado</span>
+                        <span className={s.nombre}>Nombre completo</span>
+                        {/* <span className={s.apellido}>apellido</span> */}
+                        <span className={s.email}>Email</span>
+                        <span className={s.dni}>DNI</span>
+                        <span className={s.bloqueado}>Bloqueado</span>
                     </div>
                     {
                         usuarios && usuarios.map((e, i) => 
-                            <div key={i} className={s.fila}>
+                            <div key={i} className={`${s.fila} ${info === e._id && s.viewInfo}`} onClick={()=>openInfo(e._id)}>
                                 <span className={s.creado}>{e.date.slice(0, 10).replaceAll('-', '/')}</span>
-                                <span className={s.nombre}>{e.nombre}</span>
-                                <span className={s.apellido}>{e.apellido}</span>
+                                <span className={s.nombre}>{e.nombre} {e.apellido}</span>
+                                {/* <span className={s.apellido}>{e.apellido}</span> */}
                                 <span className={s.email}>{e.email}</span>
                                 <span className={s.dni}>{e.dni}</span>
                                 <span className={s.bloqueado}>{e.bloqueado === 'false' ? 'false' : 'true'}</span>
@@ -76,6 +84,7 @@ const TablaUsuarios = () => {
                     }
                 </div>
             </div>
+            <IconoChat />
         </>
     )
 }

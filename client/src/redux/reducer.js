@@ -13,6 +13,7 @@ import {
     TRAER_CHAT,
     TRAER_CONTACTOS,
     CONTACTO_ACTUAL,
+    AGREGAR_NUEVO_MENSAJE,
 
     OBTENER_DATOS,
     AGREGAR_DATO,
@@ -22,6 +23,8 @@ import {
 
     OBTENER_USUARIOS,
     BLOCK_USER,
+
+    OBTENER_VIDEOS,
 } from '../types';
 
 const initialState = {
@@ -39,7 +42,8 @@ const initialState = {
     datoActual: null,
     taernotificacion: false,
     usuarios: null,
-    msg: null
+    msg: null,
+    videos: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -116,6 +120,11 @@ const reducer = (state = initialState, action) => {
             userId2: action.payload
         }
 
+        case AGREGAR_NUEVO_MENSAJE: return {
+            ...state,
+            chat: {...state.chat, mensajes: [...state.chat.mensajes, action.payload]}
+        }
+
         case OBTENER_DATOS: return {
             ...state,
             datos: action.payload
@@ -152,6 +161,11 @@ const reducer = (state = initialState, action) => {
             usuarios: state.usuarios.map(e => (
                 e._id.toString() !== action.payload.usuario._id.toString() ? e : action.payload.usuario
             ))
+        }
+
+        case OBTENER_VIDEOS: return {
+            ...state,
+            videos: action.payload
         }
         
         default: return state;

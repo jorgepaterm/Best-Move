@@ -83,8 +83,8 @@ module.exports = {
 
                 await usuario2.save();
 
-                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1});
-                socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, nuevoMensaje: true, nuevoContacto: true});
+                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1, mensajes});
+                socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, mensajes, nuevoMensaje: true, nuevoContacto: true});
 
                 return res.json({ msg: 'nuevo mensaje enviado' });
             }
@@ -106,8 +106,8 @@ module.exports = {
                 await chat.save();
 
                 socket.io.emit(`${userId2}:notificacion`, {nuevoMensaje: true});
-                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1});
-                socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, nuevoMensaje});
+                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1, mensajes});
+                socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, mensajes, nuevoMensaje});
                 
 
                 return res.json({ msg: 'mensaje enviado' });

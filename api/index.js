@@ -24,6 +24,7 @@ app.use('/api/usuarios', require('./src/routes/usuarios'));
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/chat', require('./src/routes/chats'));
 app.use('/api/dato', require('./src/routes/datos'));
+app.use('/api/videos', require('./src/routes/videos'));
 
 const PORT = process.env.PORT || 4000;
 

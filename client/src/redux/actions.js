@@ -16,6 +16,7 @@ import {
     ENVIAR_MENSAJE,
     TRAER_CONTACTOS,
     CONTACTO_ACTUAL,
+    AGREGAR_NUEVO_MENSAJE,
 
     OBTENER_DATOS,
     AGREGAR_DATO,
@@ -26,6 +27,9 @@ import {
     OBTENER_USUARIOS,
     PASSWORD_EDIT_USER,
     BLOCK_USER,
+
+    OBTENER_VIDEOS,
+    AGREGAR_VIDEO,
 } from '../types';
 
 export const crearUsuario = usuario => {
@@ -171,6 +175,16 @@ export const traerChat = (idChat) => {
         dispatch({
             type: TRAER_CHAT,
             payload: respuesta.data
+        })
+    }
+}
+
+export const addNewMessage = (mensaje) => {
+    return (dispatch) => {
+
+        dispatch({
+            type: AGREGAR_NUEVO_MENSAJE,
+            payload: mensaje
         })
     }
 }
@@ -348,6 +362,46 @@ export const blockUser = (id, bloquear) => {
     
             dispatch({
                 type: BLOCK_USER,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const obtenerVideos = () => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios('/api/videos');
+
+            dispatch({
+                type: OBTENER_VIDEOS,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data.msg
+            })
+        }
+    }
+}
+
+export const agregarVideo = (title, url) => {
+    return async (dispatch) => {
+
+        try{
+            const respuesta = await clienteAxios.post('/api/videos', {title, url});
+
+            dispatch({
+                type: AGREGAR_VIDEO,
                 payload: respuesta.data
             })
         }
