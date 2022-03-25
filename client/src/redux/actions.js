@@ -179,12 +179,12 @@ export const traerChat = (idChat) => {
     }
 }
 
-export const addNewMessage = (mensaje) => {
+export const addNewMessage = (mensaje, newChat) => {
     return (dispatch) => {
 
         dispatch({
             type: AGREGAR_NUEVO_MENSAJE,
-            payload: mensaje
+            payload: {mensaje, newChat}
         })
     }
 }

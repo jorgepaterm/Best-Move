@@ -122,7 +122,7 @@ const reducer = (state = initialState, action) => {
 
         case AGREGAR_NUEVO_MENSAJE: return {
             ...state,
-            chat: {...state.chat, mensajes: [...state.chat.mensajes, action.payload]}
+            chat: state.chat !== null ? {...state.chat, mensajes: [...state.chat.mensajes, action.payload.mensaje]} : action.payload.newChat
         }
 
         case OBTENER_DATOS: return {

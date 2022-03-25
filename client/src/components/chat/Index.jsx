@@ -32,7 +32,7 @@ const Chats = () => {
         socket.on(`${usuario?._id}`, data => {
 
             if(usuario.role === 'user'){
-                dispatch(addNewMessage(data.mensajes));
+                dispatch(addNewMessage(data.mensajes, data.newChat));
             }
             if(data.nuevoContacto){
                 console.log('busco nuevo usuario');
