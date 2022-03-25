@@ -53,7 +53,7 @@ const Chat = ({contacto}) => {
     }
 
     return (
-        <div className={s.containerChat}>
+        <div className={s.container}>
 
             <div className={s.titulo}>
                 <h3>{`${contacto || 'Atención al cliente'}`}</h3>
