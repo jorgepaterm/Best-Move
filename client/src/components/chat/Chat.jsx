@@ -46,14 +46,14 @@ const Chat = ({contacto}) => {
 
     if(!chat && usuario?.role === 'admin'){
         return (
-            <div className={s.container}>
-                <h3>Seleciona un usuario</h3>
+            <div className={s.containerChat}>
+                <h3 style={{margin: 'auto'}}>Seleciona un usuario</h3>
             </div>
         )
     }
 
     return (
-        <div className={s.container}>
+        <div className={s.containerChat}>
 
             <div className={s.titulo}>
                 <h3>{`${contacto || 'Atención al cliente'}`}</h3>

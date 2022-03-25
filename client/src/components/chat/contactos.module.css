@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     background-color: grey;
-    height: 83vh;
-    width: 12.7rem;
-    border-radius: 1rem 0rem 0rem 1rem;
+    height: 91vh;
+    width: 15rem;
+    /* border-radius: 1rem 0rem 0rem 1rem; */
 
 }
 
@@ -59,4 +59,67 @@
 .nuevoMensaje:hover {
     transition: 0.2s;
     background-color: white;
+}
+
+.contactos {
+    position: absolute;
+    visibility: hidden;
+}
+
+@media (max-width: 700px) {
+    .container {
+        position: absolute;
+        width: 11rem;
+        left: -11rem;
+        transition: all 0.3s;
+    }
+
+    .showContainer {
+        left: 0;
+    }
+
+    .li {
+        width: 7.5rem;
+    }
+
+    .contactos {
+        position: absolute;
+        visibility: visible;
+        right: -2.5rem;
+        top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0.5rem;
+        cursor: pointer;
+    }
+
+    .menuBurger {
+        background-color: black;
+        height: .18rem;
+        width: 1.7rem;
+        position: relative;
+        border-radius: 5rem;
+        cursor: pointer;
+    }
+    .menuBurger::before {
+        content: '';
+        display: block;
+        background-color: black;
+        height: .18rem;
+        width: 1.7rem;
+        position: absolute;
+        top: -0.5rem;
+        border-radius: 5rem;
+    }
+    .menuBurger::after {
+        content: '';
+        display: block;
+        background-color: black;
+        height: .18rem;
+        width: 1.7rem;
+        position: absolute;
+        bottom: -0.5rem;
+        border-radius: 5rem;
+    }
 }

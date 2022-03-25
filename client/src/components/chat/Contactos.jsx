@@ -21,6 +21,8 @@ const Contactos = ({setContacto}) => {
             nombre: `${obj.nombre} ${obj.apellido}`
         })
     }
+
+    const [showContactos, setShowContactos] = React.useState(false);
     
     React.useEffect(()=>{
         if(userDos?.idChat === chat?._id){
@@ -29,7 +31,11 @@ const Contactos = ({setContacto}) => {
     }, [chat])
 
     return (
-        <div className={s.container}>
+        <div className={`${s.container} ${showContactos && s.showContainer}`}>
+            <div className={s.contactos} onClick={()=>setShowContactos(!showContactos)}>
+                <div className={s.menuBurger}></div>
+            </div>
+
             <ul className={s.ul}>
                 {
                     contactos && contactos.map((e, i) => (

@@ -15,6 +15,8 @@
     width: 30rem;
     background-color: #15792d;
     border-radius: .6rem;
+    z-index: 1;
+    margin: 0 .5rem;
 }
 
 .header {
@@ -38,7 +40,7 @@
 .divInput {
     display: flex;
     justify-content: space-between;
-    width: 22rem;
+    width: 90%;
 }
 
 .divInput input {

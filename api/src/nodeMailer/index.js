@@ -43,7 +43,7 @@ const enviarMail = async (req, res, next) => {
         num = num.slice(2, 10);
         
         let info = await transporter.sendMail({
-            from: '"Best Move" <jespatern@gmail.com>', // sender address
+            from: '"Best Move" <bestmove.app@gmail.com>', // sender address
             to: req.body.email, // list of receivers
             subject: "Hello ✔", // Subject line
             html: `<b>codigo de verificación: ${num} </b>`, // html body

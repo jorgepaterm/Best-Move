@@ -1,5 +1,5 @@
 import React from "react";
-import s from './home.module.css';
+// import s from './home.module.css';
 import IconoChat from '../iconoChat/IconoChat';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
@@ -16,7 +16,7 @@ const Home = () => {
 
     return (
         <>
-            <div className={s.fondo}></div>
+            {/* <div className={s.fondo}></div> */}
             <IconoChat />
         </>
     )

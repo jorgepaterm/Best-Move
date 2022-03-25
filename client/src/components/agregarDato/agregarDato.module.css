@@ -20,23 +20,38 @@
     background-color: hsl(118, 62%, 28%);
 }
 
+.tablaContainer {
+    margin-top: 1rem;
+    width: 55rem;
+    height: 76vh;
+    overflow: auto;
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgba(255, 255, 255, 0.514);
+    border-radius: .5rem;
+    backdrop-filter: blur(5px);
+}
+
 .tabla {
-    margin: 1rem 0rem 0rem 0rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     /* background-color: grey; */
-    width: 90vw;
-    gap: .3rem;
+    width: 55rem;
 }
 
 .fila {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 3rem;
-    background-color: grey;
-    border-radius: .5rem;
+    min-height: 3rem;
+    /* background-color: grey; */
+    /* border-radius: .5rem; */
+    border-top: 2px solid grey;
+}
+
+.titulos {
+    border-top: none;
+    border-bottom: 2px solid grey;
 }
 
 .fila span {
@@ -92,3 +107,11 @@
 .fechaHora {
     justify-self: flex-end;
 } */
+
+
+@media (max-width: 830px) {
+
+    .tablaContainer {
+        width: 95vw;
+    }
+}

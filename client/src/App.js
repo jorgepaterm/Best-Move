@@ -17,6 +17,8 @@ import AgreagarDato from './components/agregarDato/AgregarDato';
 import VentanaEmergente from './components/agregarDato/VentanaEmergente';
 import DatosDelDia from './components/datosDelDia/DatosDelDia';
 import TablaUsuarios from './components/tablaUsuarios/TablaUsuarios';
+import Tutoriales from './components/tutoriales/Tutoriales';
+import Fondo from './components/fondo/Fondo';
 
 // import { useJwt } from "react-jwt";
 import tokenAuth from './config/tokenAuth';
@@ -48,6 +50,8 @@ function App() {
   return (
     <BrowserRouter>
 
+      <Fondo />
+
       <Head />
 
       <Routes>
@@ -58,6 +62,8 @@ function App() {
         <Route path='/home' element={<Home />} />
 
         <Route path='/datos-del-dia' element={usuario && usuario?.bloqueado === 'false' && autenticado ? <DatosDelDia /> : <Navigate to='/' />} />
+
+        <Route path='/tutoriales' element={usuario && usuario?.bloqueado === 'false' && autenticado ? <Tutoriales /> : <Navigate to='/' />} />
         
         <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
