@@ -9,7 +9,7 @@ const DatosDelDia = () => {
     const dispatch = useDispatch();
 
     const datos = useSelector(state => state.datos);
-    const usuario = useSelector(state => state.usuario);
+    // const usuario = useSelector(state => state.usuario);
 
     React.useEffect(()=>{
         dispatch(obtenerDatos());
