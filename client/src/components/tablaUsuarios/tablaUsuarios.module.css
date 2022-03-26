@@ -143,6 +143,10 @@
 }
 
 @media (max-width: 830px) {
+
+    .tabla {
+        height: 80vh;
+    }
     
     .fila {
         grid-template-columns: repeat(4, 1fr);

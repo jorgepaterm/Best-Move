@@ -46,7 +46,7 @@ const Chat = ({contacto}) => {
 
     if(!chat && usuario?.role === 'admin'){
         return (
-            <div className={s.containerChat}>
+            <div className={s.container}>
                 <h3 style={{margin: 'auto'}}>Seleciona un usuario</h3>
             </div>
         )

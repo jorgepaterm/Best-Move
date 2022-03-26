@@ -1,8 +1,8 @@
 .container {
     display: flex;
     justify-content: center;
-    background-color: grey;
-    height: 91vh;
+    background-color: rgb(145, 145, 255);
+    height: 100%;
     width: 15rem;
     /* border-radius: 1rem 0rem 0rem 1rem; */
 
@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
+    overflow: auto;
 }
 
 .li {
@@ -23,6 +24,7 @@
     padding: .9rem;
     margin-left: 1rem;
     width: 9rem;
+    min-height: 1.2rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -31,6 +33,10 @@
 }
 .li:hover {
     transition: 0.2s;
+    background-color: white;
+}
+
+.currentContact {
     background-color: white;
 }
 
@@ -69,6 +75,7 @@
 @media (max-width: 700px) {
     .container {
         position: absolute;
+        top: 0;
         width: 11rem;
         left: -11rem;
         transition: all 0.3s;

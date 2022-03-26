@@ -1,6 +1,10 @@
 .container {
     display: flex;
-    position: relative;
-    height: 91vh;
+    position: absolute;
+    top: 4.5rem;
+    bottom: 0;
+    flex-direction: row;
+    /* height: 91vh; */
+    /* height: 83.7vh; */
     width: 100vw;
 }

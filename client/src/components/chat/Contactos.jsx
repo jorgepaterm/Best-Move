@@ -19,10 +19,14 @@ const Contactos = ({setContacto}) => {
         setUserDos({
             idChat: chats[0]._id,
             nombre: `${obj.nombre} ${obj.apellido}`
-        })
+        });
+        setShowContactos(false)
+        setCurrentContact(userId2)
     }
 
     const [showContactos, setShowContactos] = React.useState(false);
+
+    const [currentContact, setCurrentContact] = React.useState(null);
     
     React.useEffect(()=>{
         if(userDos?.idChat === chat?._id){
@@ -43,7 +47,7 @@ const Contactos = ({setContacto}) => {
                             <li
                                 key={i}
                                 onClick={()=>handleClick(e.chats, e._id, {nombre: e.nombre, apellido: e.apellido})}
-                                className={`${usuario && usuario.chatsNoLeidos?.includes(e.chats[0]._id) ? s.nuevoMensaje : s.li}`}
+                                className={`${usuario && usuario.chatsNoLeidos?.includes(e.chats[0]._id) ? s.nuevoMensaje : s.li} ${currentContact === e._id && s.currentContact}`}
                             >{e.nombre} {e.apellido}
                             </li>
                         )
