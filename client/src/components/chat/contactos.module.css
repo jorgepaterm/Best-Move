@@ -43,7 +43,7 @@
 .nuevoMensaje {
     text-decoration: none;
     list-style: none;
-    padding: .9rem;
+    padding: .9rem .9rem .9rem 1.5rem;
     margin-left: 1rem;
     width: 9rem;
     white-space: nowrap;
@@ -60,7 +60,8 @@
     padding: .5rem;
     border-radius: 100%;
     background-color: rgb(45, 60, 195);
-    right: 5px;
+    left: -0rem;
+    top: 1rem;
 }
 .nuevoMensaje:hover {
     transition: 0.2s;
