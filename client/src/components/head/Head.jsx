@@ -2,11 +2,11 @@ import React, {useContext, useEffect} from "react";
 import {NavLink, useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import {cerrarSesion, usuarioAutenticado, addNewMessage, traerContactos} from '../../redux/actions';
-import { useJwt } from "react-jwt";
+// import { useJwt } from "react-jwt";
 import s from './head.module.css';
 import {socketContext} from '../../config/socket';
 
-const Head = ({userId, roleUser}) => {
+const Head = ({userId, roleUser, bloqueado}) => {
 
     const socket = useContext(socketContext);
 
@@ -29,9 +29,12 @@ const Head = ({userId, roleUser}) => {
     // }
 
     useEffect(()=>{
-        console.log('entro al useEffect de la notificación');
+        
+        if(bloqueado === 'true'){
+            navigate('/no-autorizado')
+        }
+
         socket.on(`${userId}:noti`, () => {
-            console.log('nuevo mensaje')
             dispatch(usuarioAutenticado());
         })
 

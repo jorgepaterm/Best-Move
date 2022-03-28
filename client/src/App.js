@@ -38,12 +38,13 @@ function App() {
   const dispatch = useDispatch();
 
   const autenticado = useSelector(state => state.autenticado);
-  // const cargando = useSelector(state => state.cargando);
+  const cargando = useSelector(state => state.cargando);
   const verificar = useSelector(state => state.verificar);
   const usuario = useSelector(state => state.usuario);
 
   const [userId, setUserId] = React.useState()
   const [roleUser, setRoleUser] = React.useState()
+  const [bloqueado, setBloqueado] = React.useState()
 
   useEffect(() => {
     if(!usuario) dispatch(usuarioAutenticado());
@@ -54,6 +55,7 @@ function App() {
     if(usuario && usuario._id !== userId) {
       setUserId(usuario._id);
       setRoleUser(usuario.role)
+      setBloqueado(usuario.bloqueado)
     }
   }, [usuario]);
 
@@ -62,34 +64,33 @@ function App() {
 
       <Fondo />
 
-      <Head userId={userId} roleUser={roleUser}/>
+      <Head userId={userId} roleUser={roleUser} bloqueado={bloqueado}/>
 
       <Routes>
 
-        <Route path='/' element={!autenticado ? <Login /> : <Navigate to='/home' />} />
-        <Route path='/nueva-cuenta' element={!autenticado ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
+        <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
+        <Route path='/nueva-cuenta' element={!autenticado && !cargando  ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
         
         <Route path='/home' element={<Home />} />
 
-        <Route path='/datos-del-dia' element={usuario && usuario?.bloqueado === 'false' && autenticado ? <DatosDelDia /> : <Navigate to='/' />} />
+        <Route path='/datos-del-dia' element={!cargando  && !autenticado ? <Navigate to='/' /> : <DatosDelDia /> } />
 
-        <Route path='/tutoriales' element={usuario && usuario?.bloqueado === 'false' && autenticado ? <Tutoriales /> : <Navigate to='/' />} />
+        <Route path='/tutoriales' element={!cargando && !autenticado ? <Navigate to='/' /> : <Tutoriales /> } />
         
         <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
-        <Route path='/chat' element={usuario?.bloqueado === 'false' && autenticado ? <Chats /> : <Navigate to='/' />} />
+        <Route path='/chat' element={!cargando && !autenticado ? <Navigate to='/' /> : <Chats /> } />
 
-        <Route path='/tabla-usuarios/*' element={autenticado && usuario?.role === 'admin'  ? <TablaUsuarios /> : <Navigate to='/' />} />
+        <Route path='/tabla-usuarios/*' element={!autenticado && !cargando && usuario?.role !== 'admin' ? <Navigate to='/' /> : <TablaUsuarios /> } />
 
-        <Route path='/agregar-dato' element={autenticado ? <AgreagarDato /> : <Navigate to='/' />} >
+        <Route path='/agregar-dato' element={!autenticado && !cargando && usuario?.role !== 'admin' ? <Navigate to='/' /> : <AgreagarDato /> } >
           <Route path='ventana-emergente' element={<VentanaEmergente />} />
         </Route>
 
+        <Route path='/no-autorizado' element={<h1>Usuario no autorizado</h1>} />
         
         <Route path='*' element={<h1>Error 404</h1>} />
 
-        <Route path='/no-autorizado' element={usuario?.bloqueado === 'true' ? <h1>Usuario no autorizado</h1> : <Navigate to='/home' />} />
-      
       </Routes>
 
     </BrowserRouter>

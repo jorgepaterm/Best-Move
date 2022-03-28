@@ -94,9 +94,9 @@ const reducer = (state = initialState, action) => {
 
         case ALERTA_ERROR: return {
             ...state,
-            // cargando: false,
+            cargando: action.payload.usuarioAutenticado === 'false' && false,
             // autenticado: false,
-            alertaerror: action.payload
+            alertaerror: action.payload.msg
         }
 
         case RESET_ERROR: return {

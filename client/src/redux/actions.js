@@ -98,7 +98,7 @@ export const usuarioAutenticado = () => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: {msg :err.response.data.msg, usuarioAutenticado: 'false'}
             })
         }
     }
