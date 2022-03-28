@@ -48,6 +48,9 @@ function App() {
   useEffect(() => {
     if(!usuario) dispatch(usuarioAutenticado());
 
+  }, []);
+
+  useEffect(()=>{
     if(usuario && usuario._id !== userId) {
       setUserId(usuario._id);
       setRoleUser(usuario.role)
