@@ -1,14 +1,12 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {NavLink, useNavigate} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {cerrarSesion, usuarioAutenticado} from '../../redux/actions';
+import {cerrarSesion, usuarioAutenticado, addNewMessage, traerContactos} from '../../redux/actions';
 import { useJwt } from "react-jwt";
 import s from './head.module.css';
 import {socketContext} from '../../config/socket';
 
-const token = localStorage.getItem('token');
-
-const Head = () => {
+const Head = ({userId, roleUser}) => {
 
     const socket = useContext(socketContext);
 
@@ -16,10 +14,9 @@ const Head = () => {
     
     const navigate = useNavigate();
 
-    const {decodedToken} = useJwt(token);
-
     const usuario = useSelector(state => state.usuario);
     const autenticado = useSelector(state => state.autenticado);
+    const chat = useSelector(state => state.chat);
 
     const handleClick = () => {
         setShowMenu(false);
@@ -27,9 +24,36 @@ const Head = () => {
         navigate('/');
     }
 
-    const onClickTraerNotif = () => {
-        dispatch(usuarioAutenticado());
-    }
+    // const onClickTraerNotif = () => {
+    //     dispatch(usuarioAutenticado());
+    // }
+
+    useEffect(()=>{
+        console.log('entro al useEffect de la notificación');
+        socket.on(`${userId}:noti`, () => {
+            console.log('nuevo mensaje')
+            dispatch(usuarioAutenticado());
+        })
+
+        socket.on(`${userId}`, data => {
+
+            if(roleUser === 'user'){
+                dispatch(addNewMessage(data.mensajes, data.newChat));
+            }
+            if(data.nuevoMensaje){
+                dispatch(usuarioAutenticado());
+            }
+            if(data.nuevoContacto){
+                console.log('busco nuevo usuario');
+                dispatch(traerContactos());
+            }
+            else if(data.chat?._id === chat?._id && roleUser === 'admin'){
+                dispatch(addNewMessage(data.mensajes, data.newChat));
+            }
+        });
+
+        return () => {socket.off();}
+    }, [socket, userId, roleUser, chat])
 
     const [showMenu, setShowMenu] = React.useState(false);
 
@@ -42,7 +66,7 @@ const Head = () => {
                     <div className={s.enlaces}>
                         <ul className={s.ul}>
                             <li className={s.li}>
-                                <NavLink className={s.enlace} onClick={onClickTraerNotif} to='/home'>
+                                <NavLink className={s.enlace} to='/home'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-house-fill" viewBox="0 0 16 16"><path fillRule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/><path fillRule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/></svg>
                                 </NavLink>
                             </li>
@@ -54,14 +78,14 @@ const Head = () => {
                             <div className={s.divMenu} onClick={()=>setShowMenu(!showMenu)}><div className={s.menuBurger}/></div>
                             
                             <ul className={`${s.menu} ${!showMenu && s.menuHidden} ${usuario.role === 'user' && s.heightMenu}`}>
-                                <li className={s.li}><NavLink className={s.enlace} onClick={()=>{setShowMenu(false); onClickTraerNotif();}} to='/datos-del-dia'>DATOS</NavLink></li>
-                                <li className={s.li} onClick={()=>{setShowMenu(false); onClickTraerNotif();}} ><NavLink className={s.enlace} to='/tutoriales'>TUTORIALES</NavLink></li>
+                                <li className={s.li}><NavLink className={s.enlace} onClick={()=>setShowMenu(false)} to='/datos-del-dia'>DATOS</NavLink></li>
+                                <li className={s.li} onClick={()=>setShowMenu(false)} ><NavLink className={s.enlace} to='/tutoriales'>TUTORIALES</NavLink></li>
                                 
                                 {
                                     usuario?.role === 'admin'
                                     && <>
-                                        <li className={s.li} onClick={()=>{setShowMenu(false); onClickTraerNotif();}} ><NavLink className={s.enlace} to='/agregar-dato'>AGREGAR DATO</NavLink></li>
-                                        <li className={s.li} onClick={()=>{setShowMenu(false); onClickTraerNotif();}} ><NavLink className={s.enlace} to='/tabla-usuarios'>TABLA USUARIOS</NavLink></li>
+                                        <li className={s.li} onClick={()=>setShowMenu(false)} ><NavLink className={s.enlace} to='/agregar-dato'>AGREGAR DATO</NavLink></li>
+                                        <li className={s.li} onClick={()=>setShowMenu(false)} ><NavLink className={s.enlace} to='/tabla-usuarios'>TABLA USUARIOS</NavLink></li>
                                     </>
                                 }
                                 

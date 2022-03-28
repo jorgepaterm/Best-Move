@@ -3,12 +3,12 @@ import Chat from './Chat';
 import Contactos from './Contactos';
 import s from './index.module.css';
 import {traerChat, traerContactos, usuarioAutenticado, addNewMessage} from '../../redux/actions';
-import {socketContext} from '../../config/socket';
+// import {socketContext} from '../../config/socket';
 import {useSelector, useDispatch} from 'react-redux';
 
 const Chats = () => {
 
-    const socket = useContext(socketContext);
+    // const socket = useContext(socketContext);
     
     const dispatch = useDispatch();
 
@@ -29,25 +29,7 @@ const Chats = () => {
             dispatch(traerChat(usuario.chats[0]));
         }
 
-        socket.on(`${usuario?._id}`, data => {
-
-            if(usuario.role === 'user'){
-                dispatch(addNewMessage(data.mensajes, data.newChat));
-            }
-            if(data.nuevoContacto){
-                console.log('busco nuevo usuario');
-                dispatch(traerContactos());
-            }
-            else if(data.chat?._id === chat?._id){
-                dispatch(traerChat(data.idChat));
-            }
-            if(data.nuevoMensaje){
-                dispatch(usuarioAutenticado());
-            }
-        });
-
-        return () => {socket.off();}
-    }, [usuario, socket, chat]);
+    }, [usuario, chat]);
 
     return (
         <div className={s.container}>

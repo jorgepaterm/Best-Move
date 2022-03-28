@@ -42,17 +42,24 @@ function App() {
   const verificar = useSelector(state => state.verificar);
   const usuario = useSelector(state => state.usuario);
 
+  const [userId, setUserId] = React.useState()
+  const [roleUser, setRoleUser] = React.useState()
+
   useEffect(() => {
-    
-    dispatch(usuarioAutenticado());
-  }, []);
+    if(!usuario) dispatch(usuarioAutenticado());
+
+    if(usuario && usuario._id !== userId) {
+      setUserId(usuario._id);
+      setRoleUser(usuario.role)
+    }
+  }, [usuario]);
 
   return (
     <BrowserRouter>
 
       <Fondo />
 
-      <Head />
+      <Head userId={userId} roleUser={roleUser}/>
 
       <Routes>
 
