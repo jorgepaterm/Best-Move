@@ -5,6 +5,11 @@ const { socket } = require('../../socket');
 module.exports = {
     añadirMensaje: async (req, res) => {
 
+        if(req.usuario.bloqueado === 'true'){
+            res.status(401).json({msg: 'Usuario no autorizado'});
+            return;
+        }
+
         let { userId2, text } = req.body;
         const userId1 = req.usuario.id;
         
@@ -122,6 +127,11 @@ module.exports = {
 
     obtenerMensajes: async (req, res) => {
 
+        if(req.usuario.bloqueado === 'true'){
+            res.status(401).json({msg: 'Usuario no autorizado'});
+            return;
+        }
+
         const {id} = req.params;
         const idUser = req.usuario.id;
 
@@ -149,6 +159,11 @@ module.exports = {
     },
 
     obtenerContactos: async (req, res) => {
+
+        if(req.usuario.bloqueado === 'true'){
+            res.status(401).json({msg: 'Usuario no autorizado'});
+            return;
+        }
 
         try{
 

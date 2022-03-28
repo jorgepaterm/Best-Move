@@ -25,7 +25,8 @@ module.exports = {
             const payload = {
                 usuario: {
                     id: usuario._id,
-                    role: usuario.role
+                    role: usuario.role,
+                    bloqueado: usuario.bloqueado
                 }
             };
 
