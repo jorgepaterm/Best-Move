@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {obtenerDatos, eliminarDato, stateEditarDato} from '../../redux/actions';
 import s from './agregarDato.module.css';
 import IconoChat from '../iconoChat/IconoChat';
+import Head from '../head/Head';
+
 
 const AgreagarDato = () => {
 
@@ -28,6 +30,7 @@ const AgreagarDato = () => {
 
     return (
         <>
+            <Head />
             <Outlet/>
             <div className={s.container}>
                 <NavLink className={s.agregarDato} to='ventana-emergente'>Agregar nuevo dato</NavLink>

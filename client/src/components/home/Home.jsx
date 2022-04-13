@@ -3,6 +3,7 @@ import React from "react";
 import IconoChat from '../iconoChat/IconoChat';
 import {useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import Head from '../head/Head';
 
 const Home = () => {
 
@@ -16,6 +17,7 @@ const Home = () => {
 
     return (
         <>
+            <Head />
             {/* <div className={s.fondo}></div> */}
             <IconoChat />
         </>

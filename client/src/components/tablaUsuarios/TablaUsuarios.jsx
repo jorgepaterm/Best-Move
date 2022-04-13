@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import VentanaEmergenteEditClave from './VentanaEmergente';
 import IconoChat from '../iconoChat/IconoChat';
+import Head from '../head/Head';
 
 const TablaUsuarios = () => {
 
@@ -38,6 +39,7 @@ const TablaUsuarios = () => {
 
     return (
         <>
+            <Head />
             <Routes>
                 <Route path='ventana-emergente' element={<VentanaEmergenteEditClave idUser={idUser} />} />
             </Routes>

@@ -43,7 +43,9 @@ const initialState = {
     taernotificacion: false,
     usuarios: null,
     msg: null,
-    videos: null
+    videos: null,
+    role: null,
+    userId: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -61,6 +63,8 @@ const reducer = (state = initialState, action) => {
         case USUARIO_AUTENTICADO: return {
             ...state,
             usuario: action.payload,
+            role: action.payload.role,
+            userId: action.payload._id,
             autenticado: action.payload && true,
             cargando: action.payload && false,
         }
@@ -70,6 +74,8 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             usuario: null,
+            role: null,
+            userId: null,
             token: null,
             autenticado: false,
             cargando: false,
@@ -84,6 +90,8 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             usuario: action.payload.usuario,
+            role: action.payload.usuario.role,
+            userId: action.payload.usuario._id,
             verificar: action.payload.num
         }
 

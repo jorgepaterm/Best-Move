@@ -6,19 +6,25 @@
 }
 
 .usuarioForm {
-    background-color: white;
+    position: relative;
+    background-color: rgb(82, 82, 82);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 30rem;
-    min-height: 30rem;
+    min-height: 32rem;
     gap: 1rem;
     border-radius: 1rem;
-    margin: 1rem .5rem;
+    margin: 3rem .5rem;
 }
 .usuarioForm h2 {
-    margin-top: 1rem;
+    padding: 1.8rem 6rem;
+    background-color: rgb(7, 92, 7);
+    position: absolute;
+    top: -2rem;
+    color: white;
+    border-radius: .5rem;
 }
 
 .form {
@@ -48,13 +54,15 @@
     font-size: 100%;
     border-radius: 0.4rem;
     padding: 0 0.4rem;
-    border: 1px solid rgba(128, 128, 128, 0.246);
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
 }
 
 .btn {
     width: 90%;
     height: 2.8rem;
-    background-color: #2f3848;
+    background-color: rgb(7, 92, 7);
     border-radius: 0.4rem;
     border: none;
     color: white;

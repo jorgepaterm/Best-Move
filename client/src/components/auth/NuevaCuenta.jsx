@@ -93,10 +93,13 @@ const NuevaCuenta = ({verificar}) => {
 
                 <h2>Crear una cuenta</h2>
 
+                <br />
+                <br />
+
                 <form className={s.form} onSubmit={handleSubmit}>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Nombre:</label>
+                        {/* <label className={s.label}>Nombre:</label> */}
                         <input 
                         className={s.input}
                         type="text"
@@ -107,7 +110,7 @@ const NuevaCuenta = ({verificar}) => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Apellido:</label>
+                        {/* <label className={s.label}>Apellido:</label> */}
                         <input 
                         className={s.input}
                         type="text"
@@ -118,7 +121,7 @@ const NuevaCuenta = ({verificar}) => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Documento:</label>
+                        {/* <label className={s.label}>Documento:</label> */}
                         <input 
                         className={s.input}
                         type="text"
@@ -129,7 +132,7 @@ const NuevaCuenta = ({verificar}) => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Email:</label>
+                        {/* <label className={s.label}>Email:</label> */}
                         <input 
                         className={s.input}
                         type="email"
@@ -140,7 +143,7 @@ const NuevaCuenta = ({verificar}) => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Contraseña:</label>
+                        {/* <label className={s.label}>Contraseña:</label> */}
                         <input 
                         className={s.input}
                         type="password"
@@ -151,7 +154,7 @@ const NuevaCuenta = ({verificar}) => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Confirmar contraseña:</label>
+                        {/* <label className={s.label}>Confirmar contraseña:</label> */}
                         <input 
                         className={s.input}
                         type="password"

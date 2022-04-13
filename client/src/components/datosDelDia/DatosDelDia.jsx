@@ -3,6 +3,7 @@ import s from './datosDelDia.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {obtenerDatos} from '../../redux/actions';
 import IconoChat from '../iconoChat/IconoChat';
+import Head from '../head/Head';
 
 const DatosDelDia = () => {
 
@@ -17,11 +18,16 @@ const DatosDelDia = () => {
 
     return (
         <>
+            <Head />
             <div className={s.container}>
                 {
                     datos && datos.map((e, i) => (
                         <div key={i} className={s.card}>
-                            <span className={s.equipos}>{e.equipoUno} - {e.equipoDos}</span>
+                            <div className={s.equipos}>
+                                <span>{e.equipoUno}</span>
+                                <span>{e.equipoDos}</span>
+                            </div>
+                            
                             <span className={s.resultado}>{e.resultado}</span>
                             
                             <div className={s.fechaHora}>

@@ -2,11 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0 3rem 0;
+    margin: 5rem 0 3rem 0;
+    position: relative;
+}
+
+.h2Titulo {
+    padding: 1.8rem 6rem;
+    background-color: rgb(7, 92, 7);
+    position: absolute;
+    top: -1rem;
+    color: white;
+    border-radius: .5rem;
 }
 
 .usuarioForm {
-    background-color: white;
+    background-color: rgb(82, 82, 82);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,11 +42,11 @@
     justify-content: space-between;
 }
 
-.label {
+/* .label {
     width: 6rem;
     display: flex;
     align-items: center;
-}
+} */
 
 .input {
     outline: none;
@@ -45,13 +55,18 @@
     font-size: 100%;
     border-radius: 0.4rem;
     padding: 0 0.4rem;
-    border: 1px solid rgba(128, 128, 128, 0.246);
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
+}
+input::placeholder {
+    color: white;
 }
 
 .btn {
     width: 90%;
     height: 2.8rem;
-    background-color: #2f3848;
+    background-color: rgb(7, 92, 7);
     border-radius: 0.4rem;
     border: none;
     color: white;

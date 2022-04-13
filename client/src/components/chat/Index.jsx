@@ -5,6 +5,7 @@ import s from './index.module.css';
 import {traerChat, traerContactos, usuarioAutenticado, addNewMessage} from '../../redux/actions';
 // import {socketContext} from '../../config/socket';
 import {useSelector, useDispatch} from 'react-redux';
+import Head from '../head/Head';
 
 const Chats = () => {
 
@@ -32,10 +33,13 @@ const Chats = () => {
     }, [usuario, chat]);
 
     return (
-        <div className={s.container}>
-           {usuario?.role === 'admin' && <Contactos setContacto={setContacto} />}
-            <Chat contacto={contacto} />
-        </div>
+        <>
+            <Head />
+            <div className={s.container}>
+            {usuario?.role === 'admin' && <Contactos setContacto={setContacto} />}
+                <Chat contacto={contacto} />
+            </div>
+        </>
     )
 }
 

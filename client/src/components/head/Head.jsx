@@ -6,7 +6,7 @@ import {cerrarSesion, usuarioAutenticado, addNewMessage, traerContactos} from '.
 import s from './head.module.css';
 import {socketContext} from '../../config/socket';
 
-const Head = ({userId, roleUser, bloqueado}) => {
+const Head = () => {
 
     const socket = useContext(socketContext);
 
@@ -17,6 +17,8 @@ const Head = ({userId, roleUser, bloqueado}) => {
     const usuario = useSelector(state => state.usuario);
     const autenticado = useSelector(state => state.autenticado);
     const chat = useSelector(state => state.chat);
+    const role = useSelector(state => state.role);
+    const userId = useSelector(state => state.userId);
 
     const handleClick = () => {
         setShowMenu(false);
@@ -30,9 +32,9 @@ const Head = ({userId, roleUser, bloqueado}) => {
 
     useEffect(()=>{
         
-        if(bloqueado === 'true'){
-            navigate('/no-autorizado')
-        }
+        // if(bloqueado === 'true'){
+        //     navigate('/no-autorizado')
+        // }
 
         socket.on(`${userId}:noti`, () => {
             dispatch(usuarioAutenticado());
@@ -40,7 +42,7 @@ const Head = ({userId, roleUser, bloqueado}) => {
 
         socket.on(`${userId}`, data => {
 
-            if(roleUser === 'user'){
+            if(role === 'user'){
                 dispatch(addNewMessage(data.mensajes, data.newChat));
             }
             if(data.nuevoMensaje){
@@ -50,13 +52,13 @@ const Head = ({userId, roleUser, bloqueado}) => {
                 console.log('busco nuevo usuario');
                 dispatch(traerContactos());
             }
-            else if(data.chat?._id === chat?._id && roleUser === 'admin'){
+            else if(data.chat?._id === chat?._id && role === 'admin'){
                 dispatch(addNewMessage(data.mensajes, data.newChat));
             }
         });
 
         return () => {socket.off();}
-    }, [socket, userId, roleUser, chat])
+    }, [socket, userId, role, chat]);
 
     const [showMenu, setShowMenu] = React.useState(false);
 
@@ -77,7 +79,7 @@ const Head = ({userId, roleUser, bloqueado}) => {
 
                         <div className={s.divNombre}>
                             {/* <li className={s.li}><NavLink className={`${usuario.chatsNoLeidos.length ? s.enlaceChat : s.enlace}`} to='/chat'><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-chat-dots" viewBox="0 0 16 16"><path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/></svg></NavLink></li> */}
-                            <span>Hola {usuario?.nombre}</span>
+                            <span className={s.saludo}>Hola {usuario?.nombre}</span>
                             <div className={s.divMenu} onClick={()=>setShowMenu(!showMenu)}><div className={s.menuBurger}/></div>
                             
                             <ul className={`${s.menu} ${!showMenu && s.menuHidden} ${usuario.role === 'user' && s.heightMenu}`}>

@@ -33,7 +33,11 @@
 .equipos {
     color: rgb(255, 255, 0);
     position: absolute;
-    top: .4rem;
+    top: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
 }
 
 .fechaHora {

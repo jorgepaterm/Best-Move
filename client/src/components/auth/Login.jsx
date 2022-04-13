@@ -55,12 +55,14 @@ const Login = () => {
         <div className={s.container}>
             <div className={s.usuarioForm}>
 
-                <h2>Iniciar sesión</h2>
+                <h2 className={s.h2Titulo}>Iniciar sesión</h2>
+                <br/>
+                <br/>
 
                 <form className={s.form} onSubmit={handleSubmit}>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Email:</label>
+                        {/* <label className={s.label}>Email:</label> */}
                         <input 
                         className={s.input}
                         type="email"
@@ -71,7 +73,7 @@ const Login = () => {
                     </div>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Contraseña:</label>
+                        {/* <label className={s.label}>Contraseña:</label> */}
                         <input 
                         className={s.input}
                         type="password"

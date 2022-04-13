@@ -8,7 +8,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Home from './components/home/Home';
-import Head from './components/head/Head';
 import NuevaCuenta from './components/auth/NuevaCuenta';
 import Login from './components/auth/Login';
 import ConfirmarCorreo from './components/auth/ConfirmarCorreo';
@@ -64,14 +63,14 @@ function App() {
 
       <Fondo />
 
-      <Head userId={userId} roleUser={roleUser} bloqueado={bloqueado}/>
+      {/* <Head userId={userId} roleUser={roleUser} bloqueado={bloqueado}/> */}
 
       <Routes>
 
         <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
         <Route path='/nueva-cuenta' element={!autenticado && !cargando  ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
         
-        <Route path='/home' element={<Home />} />
+        <Route path='/home' element={!cargando  && !autenticado ? <Navigate to='/' /> : <Home />} />
 
         <Route path='/datos-del-dia' element={!cargando  && !autenticado ? <Navigate to='/' /> : <DatosDelDia /> } />
 

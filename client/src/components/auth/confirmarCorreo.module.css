@@ -48,7 +48,7 @@
     border: 1px solid rgba(128, 128, 128, 0.246);
 }
 
-.btn {
+/* .btn {
     width: 90%;
     height: 2.8rem;
     background-color: #2f3848;
@@ -64,7 +64,7 @@
 .btn:hover {
     cursor: pointer;
     background-color: #13181f;
-}
+} */
 
 .NavLink {
     margin-bottom: 0rem;

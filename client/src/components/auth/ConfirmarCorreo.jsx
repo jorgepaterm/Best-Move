@@ -59,12 +59,12 @@ const ConfirmarCorreo = () => {
         <div className={s.container}>
             <div className={s.usuarioForm}>
 
-                <h2>Confirmar correo</h2>
+                <h2 className={s.h2Titulo}>Confirmar correo</h2>
 
                 <form className={s.form} onSubmit={handleSubmit}>
 
                     <div className={s.divInput}>
-                        <label className={s.label}>Codigo:</label>
+                        {/* <label className={s.label}>Codigo:</label> */}
                         <input 
                         className={s.input}
                         type="text"
