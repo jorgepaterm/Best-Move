@@ -15,6 +15,14 @@ const datoSchema = Schema({
     resultado: {
         type: String,
         required: true
+    },
+    equipoUnoColor: {
+        type: String,
+        required: true
+    },
+    equipoDosColor: {
+        type: String,
+        required: true
     }
 })
 
