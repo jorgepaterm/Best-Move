@@ -24,8 +24,8 @@ const DatosDelDia = () => {
                     datos && datos.map((e, i) => (
                         <div key={i} className={s.card}>
                             <div className={s.equipos}>
-                                <span>{e.equipoUno}</span>
-                                <span>{e.equipoDos}</span>
+                                <span style={{color: e.equipoUnoColor}}>{e.equipoUno}</span>
+                                <span style={{color: e.equipoDosColor}}>{e.equipoDos}</span>
                             </div>
                             
                             <span className={s.resultado}>{e.resultado}</span>

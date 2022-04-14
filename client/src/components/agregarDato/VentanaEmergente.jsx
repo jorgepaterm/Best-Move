@@ -25,6 +25,8 @@ const VentanaEmergente = () => {
         resultado: '',
         fecha: '',
         hora: '',
+        equipoUnoColor: '',
+        equipoDosColor: '',
 
     })
 
@@ -36,11 +38,13 @@ const VentanaEmergente = () => {
                 resultado: datoActual?.resultado,
                 fecha: datoActual?.fechaHora.slice(2, 12),
                 hora: datoActual?.fechaHora.slice(15, datoActual.fechaHora.length),
+                equipoUnoColor: datoActual?.equipoUnoColor,
+                equipoDosColor: datoActual?.equipoDosColor,
             })
         }
     }, [datoActual])
 
-    const {equipoUno, equipoDos, resultado, fecha, hora} = state;
+    const {equipoUno, equipoDos, resultado, fecha, hora, equipoUnoColor, equipoDosColor} = state;
 
     const onChange = e => {
         setState({
@@ -60,6 +64,8 @@ const VentanaEmergente = () => {
         if(equipoUno.trim() === '' ||
             equipoDos.trim() === '' ||
             resultado.trim() === '' ||
+            equipoUnoColor.trim() === '' ||
+            equipoDosColor.trim() === '' ||
             fecha.trim() === '' || hora.trim() === ''){
                  return dispatch(registroError('Todos los campos son obligatorios'));
         }
@@ -85,12 +91,29 @@ const VentanaEmergente = () => {
                         
                         <div className={s.divInput}>
                             <label>Equipo 1:</label>
-                            <input type="text" name="equipoUno" value={equipoUno} onChange={onChange} placeholder="Equipo 1..." />
+                            <div>
+
+                                <input type="text" name="equipoUno" value={equipoUno} onChange={onChange} placeholder="Equipo 1..." />
+                                <select name="equipoUnoColor" value={equipoUnoColor !== '' ? equipoUnoColor : null} onChange={onChange}>
+                                    <option value="seleccionar" selected disabled>Seleccionar</option>
+                                    <option value="#00B4D8">Azul</option>
+                                    <option value="red">Rojo</option>
+                                    <option value="yellow">Amarillo</option>
+                                </select>
+                            </div>
                         </div>
                         
                         <div className={s.divInput}>
                             <label>Equipo 2:</label>
-                            <input type="text" name="equipoDos" value={equipoDos} onChange={onChange} placeholder="Equipo 2..." />
+                            <div>
+                                <input type="text" name="equipoDos" value={equipoDos} onChange={onChange} placeholder="Equipo 2..." />
+                                <select name="equipoDosColor" value={equipoDosColor !== '' ? equipoDosColor : null} onChange={onChange}>
+                                    <option value="seleccionar" selected disabled>Seleccionar</option>
+                                    <option value="#00B4D8">Azul</option>
+                                    <option value="red">Rojo</option>
+                                    <option value="yellow">Amarillo</option>
+                                </select>
+                            </div>
                         </div>
                     
                         <div className={s.divInput}>
