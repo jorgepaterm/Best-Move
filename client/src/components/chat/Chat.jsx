@@ -71,7 +71,14 @@ const Chat = ({contacto}) => {
 
                                 <div className={`${e.from === usuario._id ? s.mensajeDerecha: s.mensajeIzquierda}`}>
                                     <span className={s.text}>{e.text}</span>
-                                    <span className={s.hora}>{e.date.slice(10, e.date.length-3)}</span>
+                                    <span className={s.hora}>
+                                        {/* Aqui pongo solo la hora y los minutos */}
+                                        {e.date.slice(10, e.date.length-9)}
+
+                                        {/* esto de abajo es una logica para poner el PM o el AM junto */}
+                                        {e.date.slice(18, e.date.length-4)}
+                                        {e.date.slice(22, e.date.length-1)}
+                                    </span>
                                 </div>
                             </div>
                         )
