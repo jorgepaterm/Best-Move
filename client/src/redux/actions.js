@@ -73,7 +73,7 @@ export const autenticarUsuario = usuario => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }

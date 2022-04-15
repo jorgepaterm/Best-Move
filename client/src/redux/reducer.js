@@ -104,7 +104,7 @@ const reducer = (state = initialState, action) => {
             ...state,
             cargando: action.payload.usuarioAutenticado === 'false' && false,
             // autenticado: false,
-            alertaerror: action.payload.msg
+            alertaerror: action.payload.msg !== 'token no valido' ? action.payload.msg : null
         }
 
         case RESET_ERROR: return {
