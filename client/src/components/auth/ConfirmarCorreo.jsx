@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {actualizarVerificar, crearUsuario, registroError} from '../../redux/actions';
 import s from './login.module.css';
@@ -9,17 +9,24 @@ const ConfirmarCorreo = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const verificarcorreo = useSelector(state => state.verificar);
     const usuario = useSelector(state => state.usuario);
 
     const [loading, setLoading] = useState(false);
 
     const alertaerror = useSelector(state => state.alertaerror);
+    const autenticado = useSelector(state => state.autenticado);
+
     useEffect(() => {
         if(alertaerror){
             setLoading(false);
         }
-    }, [alertaerror])
+        if(autenticado) {
+            navigate('/home');
+        }
+    }, [alertaerror, autenticado])
 
     const [state, setState] = useState('');
 
@@ -50,7 +57,6 @@ const ConfirmarCorreo = () => {
         }
 
         // enviar formulario
-        console.log('confirmar correo: ',usuario);
         dispatch(crearUsuario(usuario));
     }
 
