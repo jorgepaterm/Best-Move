@@ -69,6 +69,7 @@ function App() {
 
         <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
         <Route path='/nueva-cuenta' element={!autenticado && !cargando  ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
+        <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
         
         <Route path='/home' element={!cargando  && !autenticado ? <Navigate to='/' /> : <Home />} />
 
@@ -76,7 +77,6 @@ function App() {
 
         <Route path='/tutoriales' element={!cargando && !autenticado ? <Navigate to='/' /> : <Tutoriales /> } />
         
-        <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
 
         <Route path='/chat' element={!cargando && !autenticado ? <Navigate to='/' /> : <Chats /> } />
 
