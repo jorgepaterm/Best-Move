@@ -35,7 +35,6 @@ import {
 export const crearUsuario = usuario => {
     return async (dispatch) => {
 
-        console.log('action: ', usuario);
         try{
 
             const respuesta = await clienteAxios.post('/api/usuarios?verificado=true', usuario);
@@ -133,7 +132,7 @@ export const verificarCorreo = (usuario) => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
 
@@ -162,7 +161,7 @@ export const registroError = msg => {
     return (dispatch) => {
         dispatch({
             type: ALERTA_ERROR,
-            payload: msg
+            payload: {msg}
         })
     }
 }
@@ -237,7 +236,7 @@ export const obtenerDatos = () => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -257,7 +256,7 @@ export const agregarDato = (datos) => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -277,7 +276,7 @@ export const eliminarDato = id => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -297,7 +296,7 @@ export const editarDato = (id, datos) => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -326,7 +325,7 @@ export const obtenerUsuarios = () => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -346,7 +345,7 @@ export const passwordEditUser = (id, newPassword) => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -368,7 +367,7 @@ export const blockUser = (id, bloquear) => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -388,7 +387,7 @@ export const obtenerVideos = () => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
@@ -408,7 +407,7 @@ export const agregarVideo = (title, url) => {
         catch(err){
             dispatch({
                 type: ALERTA_ERROR,
-                payload: err.response.data.msg
+                payload: err.response.data
             })
         }
     }
