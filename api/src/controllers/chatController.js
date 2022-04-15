@@ -89,7 +89,7 @@ module.exports = {
                 await usuario2.save();
 
                 socket.io.emit(`${userId2}:noti`, {});
-                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1, mensajes});
+                socket.io.emit(`${userId1}`, {idChat, chat, idUser2: userId1, mensajes, newChat});
                 socket.io.emit(`${userId2}`, {idChat, chat, idUser2: userId1, mensajes, nuevoMensaje: true, nuevoContacto: true});
 
                 return res.json({ msg: 'nuevo mensaje enviado' });
