@@ -1,10 +1,83 @@
-.fondo {
-    background-image: url("https://www.bbva.com/wp-content/uploads/2017/08/bbva-balon-futbol-2017-08-11.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
+.container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 100vw;
+    height: 30rem;
+}
+.carousel img {
+    object-fit: contain;
+    box-shadow: 15px 15px 15px black;
+}
+
+.imgLeft {
+    width: 20rem;
+}
+.imgRight {
+    width: 20rem;
+}
+.imgCenter {
+    width: 35rem;
+}
+
+@media (max-width: 1130px) {
+    .divImg {
+        z-index: 1;
+    }
+
+    .imgLeft {
+        width: 19rem;
+        filter: brightness(50%);
+        position: absolute;
+        left: 0;
+        top: 9rem;
+    }
+    .imgRight {
+        width: 19rem;
+        filter: brightness(50%);
+        position: absolute;
+        right: 0;
+        top: 9rem;
+    }
+    /* .imgCenter {
+        width: 40rem;
+    } */
+}
+
+@media (max-width: 940px) {
+    .imgLeft {
+        width: 19rem;
+    }
+    .imgRight {
+        width: 19rem;
+    }
+    .imgCenter {
+        width: 28rem;
+    }
+}
+
+@media (max-width: 670px) {
+    .imgLeft {
+        width: 15rem;
+    }
+    .imgRight {
+        width: 15rem;
+    }
+    .imgCenter {
+        width: 20rem;
+    }
 }
