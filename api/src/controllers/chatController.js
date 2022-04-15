@@ -15,7 +15,7 @@ module.exports = {
         
         let mensajes;
 
-        let date = new Date().toLocaleString();
+        let date = new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' });
         
         if(req.usuario.role === 'user'){
             
