@@ -1,9 +1,21 @@
 import React from "react";
+import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import s from './tutoriales.module.css';
 import IconoChat from "../iconoChat/IconoChat";
 import Head from '../head/Head';
 
 const Tutoriales = () => {
+
+    const navigate = useNavigate();
+
+    const bloqueado = useSelector(state => state.bloqueado);
+
+    React.useEffect(()=>{
+        if(bloqueado === 'true'){
+            navigate('/bloqueo')
+        }
+    }, [bloqueado])
 
     return (
         <>

@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <socketContext.Provider value={socket}>
       <Provider store={store}>
-        <App />
+          <App />
       </Provider>
     </socketContext.Provider>
   </React.StrictMode>,

@@ -27,6 +27,7 @@ import {
     OBTENER_USUARIOS,
     PASSWORD_EDIT_USER,
     BLOCK_USER,
+    ACTUALIZAR_ESTADO_BLOQUEO,
 
     OBTENER_VIDEOS,
     AGREGAR_VIDEO,
@@ -356,8 +357,6 @@ export const blockUser = (id, bloquear) => {
 
         try{
             const respuesta = await clienteAxios.put('/api/usuarios', {id, bloquear});
-
-            console.log(respuesta.data)
     
             dispatch({
                 type: BLOCK_USER,
@@ -410,5 +409,15 @@ export const agregarVideo = (title, url) => {
                 payload: err.response.data
             })
         }
+    }
+}
+
+export const estadoBloqueo = (bloqueado) => {
+    return (dispatch) => {
+
+        dispatch({
+            type: ACTUALIZAR_ESTADO_BLOQUEO,
+            payload: bloqueado
+        })
     }
 }

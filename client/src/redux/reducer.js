@@ -23,12 +23,14 @@ import {
 
     OBTENER_USUARIOS,
     BLOCK_USER,
+    ACTUALIZAR_ESTADO_BLOQUEO,
 
     OBTENER_VIDEOS,
 } from '../types';
 
 const initialState = {
     usuario: null,
+    bloqueado: null,
     token: localStorage.getItem('token'),
     autenticado: false,
     cargando: true,
@@ -63,6 +65,7 @@ const reducer = (state = initialState, action) => {
         case USUARIO_AUTENTICADO: return {
             ...state,
             usuario: action.payload,
+            bloqueado: action.payload.bloqueado,
             role: action.payload.role,
             userId: action.payload._id,
             autenticado: action.payload && true,
@@ -90,6 +93,7 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             usuario: action.payload.usuario,
+            bloqueado: action.payload.usuario.bloqueado,
             role: action.payload.usuario.role,
             userId: action.payload.usuario._id,
             verificar: action.payload.num
@@ -174,6 +178,11 @@ const reducer = (state = initialState, action) => {
         case OBTENER_VIDEOS: return {
             ...state,
             videos: action.payload
+        }
+
+        case ACTUALIZAR_ESTADO_BLOQUEO: return {
+            ...state,
+            usuario: {...state.usuario, bloqueado: action.payload}
         }
         
         default: return state;

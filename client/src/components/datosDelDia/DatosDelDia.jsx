@@ -1,6 +1,7 @@
 import React from "react";
 import s from './datosDelDia.module.css';
 import {useSelector, useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 import {obtenerDatos} from '../../redux/actions';
 import IconoChat from '../iconoChat/IconoChat';
 import Head from '../head/Head';
@@ -9,12 +10,18 @@ const DatosDelDia = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const datos = useSelector(state => state.datos);
-    // const usuario = useSelector(state => state.usuario);
+    const bloqueado = useSelector(state => state.bloqueado);
 
     React.useEffect(()=>{
         dispatch(obtenerDatos());
-    }, [])
+
+        if(bloqueado === 'true'){
+            navigate('/bloqueo')
+        }
+    }, [bloqueado])
 
     return (
         <>

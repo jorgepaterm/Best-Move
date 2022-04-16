@@ -23,9 +23,6 @@ const ConfirmarCorreo = () => {
         if(alertaerror){
             setLoading(false);
         }
-        if(autenticado) {
-            navigate('/home');
-        }
     }, [alertaerror, autenticado])
 
     const [state, setState] = useState('');

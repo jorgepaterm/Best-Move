@@ -15,6 +15,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const autenticado = useSelector(state => state.autenticado);
+    const bloqueado = useSelector(state => state.bloqueado);
 
     const [posicion, setPosicion] = useState(1);
 
@@ -26,6 +27,9 @@ const Home = () => {
         imagenCinco
     ]
 
+    if(bloqueado === 'true'){
+        navigate('/bloqueo')
+    }
     
     React.useEffect(()=>{
 
@@ -39,7 +43,7 @@ const Home = () => {
         <>
 
             {
-                autenticado
+                autenticado && bloqueado === 'false'
                 ? <>
                 <Head />
                 
