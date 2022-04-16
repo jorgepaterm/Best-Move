@@ -1,6 +1,7 @@
 const Usuario = require('../models/usuario');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { socket } = require('../../socket.js');
 
 module.exports = {
     crearUsuario: async (req, res) => {
@@ -80,6 +81,8 @@ module.exports = {
             },{
                 new: true
             });
+
+            socket.io.emit(`${id}:noti`, {bloqueado: usuario.bloqueado});
 
             if(bloquear === true) {
                 res.json({state: true, msg: `Usuario bloqueado`, usuario});
