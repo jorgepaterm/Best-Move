@@ -1,0 +1,28 @@
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ventana {
+    background-color: #0B4619;
+    height: 15rem;
+    width: 25rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 1rem;
+    padding: 1rem;
+}
+
+.text {
+    color: white;
+    font-size: 2rem;
+}
