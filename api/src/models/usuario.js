@@ -39,6 +39,9 @@ const usuarioSchema = mongoose.Schema({
         type: Date,
         default: new Date
     },
+    uuid: {
+        type: String
+    },
     chatsNoLeidos: Array,
     chats: [{
         type: mongoose.Schema.Types.ObjectId,

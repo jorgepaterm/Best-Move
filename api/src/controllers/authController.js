@@ -1,12 +1,15 @@
 const Usuario = require('../models/usuario');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
 const {socket} = require('../../socket');
 
 module.exports = {
     autenticarUsuario: async (req, res) => {
         
         const {email, password} = req.body;
+
+        const uuid = uuidv4();
 
         try{
 
@@ -21,12 +24,18 @@ module.exports = {
                 return res.status(400).json({msg: 'La contraseña es incorrecta'})
             }
 
+            usuario.uuid = uuid;
+            await usuario.save();
+
+            socket.io.emit(`${usuario._id}:registro`, {});
+
             // Crear y firmar el jwt
             const payload = {
                 usuario: {
                     id: usuario._id,
                     role: usuario.role,
-                    bloqueado: usuario.bloqueado
+                    bloqueado: usuario.bloqueado,
+                    uuid: uuid
                 }
             };
 
@@ -47,9 +56,16 @@ module.exports = {
 
     usuarioAutenticado: async (req, res) => {
 
+        const {uuid} = req.usuario;
+
         try{
 
             const usuario = await Usuario.findById(req.usuario.id).select('-password');
+
+            if(usuario.uuid !== uuid){
+                res.status(401).json({msg: 'Han iniciado sesión en otro sitio'});
+                return;
+            }
 
             res.json(usuario);
 

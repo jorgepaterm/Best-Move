@@ -1,6 +1,7 @@
 const Usuario = require('../models/usuario');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { v4: uuidv4 } = require('uuid');
 const { socket } = require('../../socket.js');
 
 module.exports = {
@@ -8,11 +9,15 @@ module.exports = {
         
         const {nombre, apellido, email, password, dni, role} = req.body;
 
+        const uuid = uuidv4();
+
         try{
 
             const salt = await bcryptjs.genSalt(10);
             newPassword = await bcryptjs.hash(password, salt);
 
+            
+            
             const usuario = await new Usuario({
                 nombre,
                 apellido,
@@ -20,20 +25,19 @@ module.exports = {
                 password: newPassword,
                 dni,
                 role,
+                uuid,
             })
             usuario.save();
-
-            // genero 
-
+            
             // Crear y firmar el jwt
             const payload = {
                 usuario: {
                     id: usuario._id,
                     role: usuario.role,
-                    bloqueado: usuario.bloqueado
+                    bloqueado: usuario.bloqueado,
+                    uuid: uuid
                 }
             };
-
             // firmar el jwt
             jwt.sign(payload, process.env.SECRETA, {
                 expiresIn: 54000
