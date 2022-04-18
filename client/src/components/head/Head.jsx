@@ -26,15 +26,11 @@ const Head = () => {
         navigate('/');
     }
 
-    // const onClickTraerNotif = () => {
-    //     dispatch(usuarioAutenticado());
-    // }
-
     useEffect(()=>{
-        
-        // if(bloqueado === 'true'){
-        //     navigate('/no-autorizado')
-        // }
+
+        socket.on(`${userId}:registro`, () => {
+            dispatch(cerrarSesion());
+        })
 
         socket.on(`${userId}:noti`, data => {
             estadoBloqueo(data.bloqueado);
