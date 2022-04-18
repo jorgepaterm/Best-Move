@@ -44,7 +44,7 @@ module.exports = {
             }, (err, token) => {
                 if(err) throw err;
                 res.json({token});
-            })
+            });
         }
         catch(err){
             console.log(err);
