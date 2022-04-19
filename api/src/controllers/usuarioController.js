@@ -56,7 +56,7 @@ module.exports = {
 
         if(req.usuario.role !== 'admin'){
             res.status(401).json({msg: 'Usuario no autorizado'})
-        }
+        };
 
         try{
 
