@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {autenticarUsuario} from '../../redux/actions';
+import {autenticarUsuario, registroError} from '../../redux/actions';
 import s from './login.module.css';
 import AlertaError from "../alertaError/AlertaError";
 
@@ -24,7 +24,7 @@ const Login = () => {
         if(alertaerror){
             setLoading(false);
         }
-    }, [alertaerror])
+    }, [alertaerror]);
 
     const handleChange = e => {
         setState({
@@ -43,7 +43,7 @@ const Login = () => {
         // hacer las validaciones
         if(email.trim() === '' || 
         contraseña.trim() === ''){
-            return alert('todos los campos son obligatorios');
+            return dispatch(registroError('Todos los campos son obligatorios'));
         }
 
         // enviar formulario
