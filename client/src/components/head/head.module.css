@@ -137,9 +137,6 @@
     text-align: center;
     transition: all 0.3s;
 }
-.menu:active {
-    background-color: blue;
-}
 
 .menu li {
     cursor: pointer;
