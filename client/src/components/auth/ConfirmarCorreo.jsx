@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {actualizarVerificar, crearUsuario, registroError} from '../../redux/actions';
+import {actualizarVerificar, crearUsuario, registroError, autenticarUsuario} from '../../redux/actions';
 import s from './login.module.css';
 import AlertaError from "../alertaError/AlertaError";
 
@@ -54,8 +54,16 @@ const ConfirmarCorreo = () => {
         }
 
         // enviar formulario
-        dispatch(crearUsuario(usuario));
+        if(usuario.login){
+            console.log(usuario.email, usuario);
+            dispatch(autenticarUsuario(usuario));
+        }
+        else {
+            dispatch(crearUsuario(usuario));
+        }
     }
+
+    let volver = usuario.login ? '/' : '/nueva-cuenta'
 
     return (
         <>
@@ -67,7 +75,6 @@ const ConfirmarCorreo = () => {
                 <form className={s.form} onSubmit={handleSubmit}>
 
                     <div className={s.divInput}>
-                        {/* <label className={s.label}>Codigo:</label> */}
                         <input 
                         className={s.input}
                         type="text"
@@ -89,7 +96,7 @@ const ConfirmarCorreo = () => {
 
                 </form>
 
-                <NavLink onClick={handleClick} to='/nueva-cuenta' className={s.NavLink}>No me llegó el codigo</NavLink>
+                <NavLink onClick={handleClick} to={`${volver}`} className={s.NavLink}>No me llegó el codigo</NavLink>
 
             </div>
         </div>

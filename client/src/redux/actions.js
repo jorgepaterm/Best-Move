@@ -7,6 +7,7 @@ import {
     CERRAR_SESION,
 
     VERIFICAR_CORREO,
+    VERIFICAR_CORREO_LOGIN,
     ACTUALIZAR_VERIFICAR,
 
     ALERTA_ERROR,
@@ -61,7 +62,7 @@ export const autenticarUsuario = usuario => {
     return async (dispatch) => {
         try{
 
-            const respuesta = await clienteAxios.post('/api/auth', usuario)
+            const respuesta = await clienteAxios.post('/api/auth?verificado=true', usuario)
 
             dispatch({
                 type: AUTENTICAR_USUARIO,
@@ -127,6 +128,36 @@ export const verificarCorreo = (usuario) => {
     
             dispatch({
                 type: VERIFICAR_CORREO,
+                payload: respuesta.data
+            })
+        }
+        catch(err){
+            dispatch({
+                type: ALERTA_ERROR,
+                payload: err.response.data
+            })
+        }
+
+    }
+}
+
+export const verificarCorreoLogin = ({email, password}) => {
+    return async (dispatch) => {
+
+        try{
+
+            const respuesta = await clienteAxios.post('/api/auth', {email, password});
+
+            let usuario = {
+                email,
+                password,
+                login: true
+            };
+    
+            respuesta.data.usuario = usuario;
+    
+            dispatch({
+                type: VERIFICAR_CORREO_LOGIN,
                 payload: respuesta.data
             })
         }

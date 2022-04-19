@@ -5,6 +5,7 @@ import {
     CERRAR_SESION,
 
     VERIFICAR_CORREO,
+    VERIFICAR_CORREO_LOGIN,
     ACTUALIZAR_VERIFICAR,
 
     ALERTA_ERROR,
@@ -96,6 +97,12 @@ const reducer = (state = initialState, action) => {
             bloqueado: action.payload.usuario.bloqueado,
             role: action.payload.usuario.role,
             userId: action.payload.usuario._id,
+            verificar: action.payload.num
+        }
+
+        case VERIFICAR_CORREO_LOGIN: return {
+            ...state,
+            usuario: action.payload.usuario,
             verificar: action.payload.num
         }
 

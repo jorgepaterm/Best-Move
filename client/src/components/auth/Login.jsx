@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
-import {autenticarUsuario, registroError} from '../../redux/actions';
+import {autenticarUsuario, registroError, verificarCorreoLogin} from '../../redux/actions';
 import s from './login.module.css';
 import AlertaError from "../alertaError/AlertaError";
 
 const Login = () => {
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
     
@@ -19,12 +21,16 @@ const Login = () => {
     const {email, contraseña} = state
     
     const alertaerror = useSelector(state => state.alertaerror);
+    const verificar = useSelector(state => state.verificar);
 
     useEffect(() => {
         if(alertaerror){
             setLoading(false);
         }
-    }, [alertaerror]);
+        if(verificar){
+            navigate('/verificar-correo');
+        }
+    }, [alertaerror, verificar]);
 
     const handleChange = e => {
         setState({
@@ -47,7 +53,7 @@ const Login = () => {
         }
 
         // enviar formulario
-        dispatch(autenticarUsuario({email, password: contraseña}));
+        dispatch(verificarCorreoLogin({email, password: contraseña}));
     }
 
     return (
