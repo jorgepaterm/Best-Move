@@ -26,7 +26,7 @@ const AgreagarDato = () => {
 
     React.useEffect(()=>{
         dispatch(obtenerDatos());
-    }, [])
+    }, []);
 
     return (
         <>
