@@ -10,19 +10,40 @@
 }
 
 .ventana {
+    position: relative;
     background-color: #0B4619;
     height: 15rem;
     width: 25rem;
     border-radius: 1rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     margin: 0 1rem;
     padding: 1rem;
+    box-shadow: 15px 15px 15px black;
 }
 
 .text {
     color: white;
     font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.navLink {
+    /* position: absolute;
+    bottom: 1rem;
+    right: 1rem; */
+    text-decoration: none;
+    color: rgb(107, 107, 237);
+    padding: 0.8rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #188531;
+    transition: all 0.3s;
+}
+.navLink:hover {
+    background-color: #136626;
 }

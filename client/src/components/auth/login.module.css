@@ -26,6 +26,7 @@
     gap: 1rem;
     border-radius: 1rem;
     margin: 1rem .5rem;
+    box-shadow: 15px 15px 15px black;
 }
 
 .form {
