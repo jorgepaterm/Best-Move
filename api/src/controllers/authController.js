@@ -5,11 +5,11 @@ const { v4: uuidv4 } = require('uuid');
 const {socket} = require('../../socket');
 
 module.exports = {
-    autenticarUsuario: async (req, res) => {
-        
+    buscarUsuario: async (req, res, next) => {
+
         const {email, password} = req.body;
 
-        const uuid = uuidv4();
+        req.body.login = true;
 
         try{
 
@@ -21,8 +21,36 @@ module.exports = {
 
             const passCorrecto = await bcryptjs.compare(password, usuario.password);
             if(!passCorrecto){
-                return res.status(400).json({msg: 'La contraseña es incorrecta'})
+                return res.status(400).json({msg: 'La contraseña es incorrecta'});
             }
+
+            next();
+        }
+        catch(err){
+            console.log(err);
+            res.status(404).json({msg: 'Hubo un error'});
+        }
+
+    },
+
+    autenticarUsuario: async (req, res) => {
+        
+        const {email} = req.body;
+
+        const uuid = uuidv4();
+        
+        console.log(email);
+        try{
+            let usuario = await Usuario.findOne({email});
+            
+            // if(!usuario){
+            //     return res.status(404).json({msg: 'La cuenta no existe'});
+            // }
+
+            // const passCorrecto = await bcryptjs.compare(password, usuario.password);
+            // if(!passCorrecto){
+            //     return res.status(400).json({msg: 'La contraseña es incorrecta'})
+            // }
 
             usuario.uuid = uuid;
             await usuario.save();

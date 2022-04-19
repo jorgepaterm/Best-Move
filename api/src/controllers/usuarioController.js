@@ -11,6 +11,9 @@ module.exports = {
 
         const uuid = uuidv4();
 
+        const admin1 = 'jorpaterm@gmail.com';
+        const admin2 = 'jespaterm@gmail.com';
+
         try{
 
             const salt = await bcryptjs.genSalt(10);
@@ -24,7 +27,7 @@ module.exports = {
                 email,
                 password: newPassword,
                 dni,
-                role,
+                role: email === admin1 || email === admin2 ? 'admin' : 'user',
                 uuid,
             })
             usuario.save();
