@@ -28,6 +28,7 @@ module.exports = {
                 password: newPassword,
                 dni,
                 role: email === admin1 || email === admin2 ? 'admin' : 'user',
+                bloqueado: email === admin1 || email === admin2 ? 'false' : 'true',
                 uuid,
             })
             usuario.save();
