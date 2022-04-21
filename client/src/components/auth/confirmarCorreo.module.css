@@ -2,19 +2,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0 3rem 0;
+    margin: 5rem 0 3rem 0;
+    position: relative;
+}
+
+.h2Titulo {
+    padding: 1.8rem 0rem;
+    width: 22rem;
+    background-color: rgb(7, 92, 7);
+    position: absolute;
+    top: -2rem;
+    color: white;
+    border-radius: .5rem;
+    margin: 0 5rem;
+    text-align: center;
 }
 
 .usuarioForm {
-    background-color: white;
+    background-color: rgb(82, 82, 82);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 30rem;
-    height: 18rem;
+    height: 14rem;
     gap: 1rem;
     border-radius: 1rem;
+    margin: 1rem .5rem;
+    box-shadow: 15px 15px 15px black;
+    padding-top: 1rem;
 }
 
 .form {
@@ -29,14 +45,13 @@
     width: 98%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-.label {
+/* .label {
     width: 6rem;
     display: flex;
     align-items: center;
-}
+} */
 
 .input {
     outline: none;
@@ -45,13 +60,18 @@
     font-size: 100%;
     border-radius: 0.4rem;
     padding: 0 0.4rem;
-    border: 1px solid rgba(128, 128, 128, 0.246);
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
+}
+input::placeholder {
+    color: white;
 }
 
-/* .btn {
+.btn {
     width: 90%;
     height: 2.8rem;
-    background-color: #2f3848;
+    background-color: rgb(7, 92, 7);
     border-radius: 0.4rem;
     border: none;
     color: white;
@@ -64,10 +84,22 @@
 .btn:hover {
     cursor: pointer;
     background-color: #13181f;
-} */
+}
 
 .NavLink {
     margin-bottom: 0rem;
     text-decoration: none;
     color: black;
+}
+
+@media (max-width: 450px) {
+    .divInput {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .h2Titulo {
+        width: 21rem;
+    }
 }

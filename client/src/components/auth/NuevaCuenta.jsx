@@ -91,7 +91,7 @@ const NuevaCuenta = ({verificar}) => {
         <div className={s.container}>
             <div className={s.usuarioForm}>
 
-                <h2>Crear una cuenta</h2>
+                <h2 className={s.h2Titulo}>Crear una cuenta</h2>
 
                 <br />
                 <br />

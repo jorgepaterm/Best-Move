@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import {actualizarVerificar, crearUsuario, registroError, autenticarUsuario} from '../../redux/actions';
-import s from './login.module.css';
+import s from './confirmarCorreo.module.css';
 import AlertaError from "../alertaError/AlertaError";
 
 const ConfirmarCorreo = () => {
