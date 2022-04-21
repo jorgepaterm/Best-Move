@@ -41,7 +41,8 @@ const enviarMail = async (req, res, next) => {
             // genero un numero random para la confiemacion del correo
             let num = Math.random();
             num = num.toString();
-            num = num.slice(2, 10);
+            num = num.slice(2, 6);
+            console.log(num)
             
             let info = await transporter.sendMail({
                 from: '"Best Move" <bestmove.app@gmail.com>', // sender address
@@ -81,7 +82,7 @@ const enviarMail = async (req, res, next) => {
             // genero un numero random para la confiemacion del correo
             let num = Math.random();
             num = num.toString();
-            num = num.slice(2, 10);
+            num = num.slice(2, 6);
             
             let info = await transporter.sendMail({
                 from: '"Best Move" <bestmove.app@gmail.com>', // sender address
