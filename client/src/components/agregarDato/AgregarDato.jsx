@@ -55,7 +55,7 @@ const AgreagarDato = () => {
                                     <span className={s.resultados}>{e.resultado}</span>
                                     <span className={s.championg}>{e.championg}</span>
                                     <span className={s.ligas}>{e.liga}</span>
-                                    <span className={s.fechaHora}>{e.fechaHora.slice(2, 12)} {e.fechaHora.slice(15, e.fechaHora.length)}</span>
+                                    <span className={s.fechaHora}>{e.dia} {e.hora}</span>
                                     
                                     <div>
                                         <button className={`${s.btn} ${s.btnEditar}`} onClick={()=>combiarEstadoDato(e)}>

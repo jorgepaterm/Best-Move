@@ -9,7 +9,10 @@ const datoSchema = Schema({
         type: String,
         required: true
     },
-    fechaHora: {
+    hora: {
+        type: String
+    },
+    dia: {
         type: String
     },
     resultado: {

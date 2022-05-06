@@ -23,7 +23,7 @@ const VentanaEmergente = () => {
         equipoUno: '',
         equipoDos: '',
         resultado: '',
-        fecha: '',
+        dia: '',
         hora: '',
         equipoUnoColor: '',
         equipoDosColor: '',
@@ -37,8 +37,8 @@ const VentanaEmergente = () => {
                 equipoUno: datoActual?.equipoUno,
                 equipoDos: datoActual?.equipoDos,
                 resultado: datoActual?.resultado,
-                fecha: datoActual?.fechaHora.slice(2, 12),
-                hora: datoActual?.fechaHora.slice(15, datoActual.fechaHora.length),
+                dia: datoActual?.fdia,
+                hora: datoActual?.hora,
                 equipoUnoColor: datoActual?.equipoUnoColor,
                 equipoDosColor: datoActual?.equipoDosColor,
                 championg: datoActual?.championg,
@@ -47,7 +47,7 @@ const VentanaEmergente = () => {
         }
     }, [datoActual])
 
-    const {equipoUno, equipoDos, resultado, fecha, hora, equipoUnoColor, equipoDosColor, championg, liga} = state;
+    const {equipoUno, equipoDos, resultado, dia, hora, equipoUnoColor, equipoDosColor, championg, liga} = state;
 
     const onChange = e => {
         setState({
@@ -71,7 +71,7 @@ const VentanaEmergente = () => {
             equipoDosColor.trim() === '' ||
             championg.trim() === '' ||
             liga.trim() === '' ||
-            fecha.trim() === '' || hora.trim() === ''){
+            dia.trim() === '' || hora.trim() === ''){
                  return dispatch(registroError('Todos los campos son obligatorios'));
         }
 
@@ -138,8 +138,17 @@ const VentanaEmergente = () => {
                         </div>
                         
                         <div className={s.divInput}>
-                            <label>Fecha:</label>
-                            <input type="date" name="fecha" value={fecha} onChange={onChange} />
+                            <label>Día:</label>
+                            <select name="dia" value={dia !== '' ? dia : null} onChange={onChange} >
+                                <option value="seleccionar" selected disabled>Seleccionar</option>
+                                <option value="lunes">Lunes</option>
+                                <option value="martes">Martes</option>
+                                <option value="miercoles">Miercoles</option>
+                                <option value="jueves">Jueves</option>
+                                <option value="viernes">Viernes</option>
+                                <option value="sabado">Sabado</option>
+                                <option value="domingo">Domingo</option>
+                            </select>
                         </div>
                         
                         <div className={s.divInput}>

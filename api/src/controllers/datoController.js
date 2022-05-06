@@ -12,7 +12,7 @@ module.exports = {
         const {
             equipoUno,
             equipoDos,
-            fecha,
+            dia,
             hora,
             resultado,
             equipoUnoColor,
@@ -21,14 +21,13 @@ module.exports = {
             liga
         } = req.body;
 
-        const fechaHora = `F:${fecha} T:${hora}`;
-
         try{
 
             const dato = await new Dato({
                 equipoUno,
                 equipoDos,
-                fechaHora,
+                hora,
+                dia,
                 resultado,
                 equipoUnoColor,
                 equipoDosColor,
@@ -76,7 +75,7 @@ module.exports = {
         const {
             equipoUno,
             equipoDos,
-            fecha,
+            dia,
             hora,
             resultado,
             equipoUnoColor,
@@ -85,17 +84,18 @@ module.exports = {
             liga
         } = req.body;
 
-        let fechaHora;
-        if(fecha && hora) {
-            fechaHora = `F:${fecha} T:${hora}`;
-        }
+        // let fechaHora;
+        // if(fecha && hora) {
+        //     fechaHora = `F:${fecha} T:${hora}`;
+        // }
 
         try{
 
             const newDato = await Dato.findOneAndUpdate({_id: id}, {
                 equipoUno,
                 equipoDos,
-                fechaHora,
+                hora,
+                dia,
                 resultado,
                 equipoUnoColor,
                 equipoDosColor,

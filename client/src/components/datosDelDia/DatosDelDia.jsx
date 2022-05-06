@@ -45,8 +45,8 @@ const DatosDelDia = () => {
                             <span className={s.resultado}>{e.resultado}</span>
                             
                             <div className={s.fechaHora}>
-                                <span>{e.fechaHora.slice(7, 12).replaceAll('-', '/')}</span>
-                                <span>{e.fechaHora.slice(15, e.fechaHora.length)}</span>
+                                <span>{e.dia}</span>
+                                <span>{e.hora}</span>
                             </div>
                             
                             <img className={s.imgCancha} src="https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg" alt="fondo de una cancha" />
