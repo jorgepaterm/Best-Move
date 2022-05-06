@@ -9,7 +9,17 @@ module.exports = {
             return res.status(401).json({msg: 'Usuario no autorizado'});
         }
 
-        const {equipoUno, equipoDos, fecha, hora, resultado, equipoUnoColor, equipoDosColor} = req.body;
+        const {
+            equipoUno,
+            equipoDos,
+            fecha,
+            hora,
+            resultado,
+            equipoUnoColor,
+            equipoDosColor,
+            championg,
+            liga
+        } = req.body;
 
         const fechaHora = `F:${fecha} T:${hora}`;
 
@@ -21,7 +31,9 @@ module.exports = {
                 fechaHora,
                 resultado,
                 equipoUnoColor,
-                equipoDosColor
+                equipoDosColor,
+                championg,
+                liga
             })
             await dato.save();
 
@@ -61,7 +73,17 @@ module.exports = {
         }
 
         const {id} = req.params;
-        const {equipoUno, equipoDos, fecha, hora, resultado, equipoUnoColor, equipoDosColor} = req.body;
+        const {
+            equipoUno,
+            equipoDos,
+            fecha,
+            hora,
+            resultado,
+            equipoUnoColor,
+            equipoDosColor,
+            championg,
+            liga
+        } = req.body;
 
         let fechaHora;
         if(fecha && hora) {
@@ -76,7 +98,9 @@ module.exports = {
                 fechaHora,
                 resultado,
                 equipoUnoColor,
-                equipoDosColor
+                equipoDosColor,
+                championg,
+                liga
             },
             {
                 new: true

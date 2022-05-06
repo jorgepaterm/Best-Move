@@ -23,6 +23,14 @@ const datoSchema = Schema({
     equipoDosColor: {
         type: String,
         required: true
+    },
+    championg: {
+        type: String,
+        required: true
+    },
+    liga: {
+        type: String,
+        required: true
     }
 })
 
