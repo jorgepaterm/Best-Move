@@ -40,6 +40,8 @@ const AgreagarDato = () => {
                         <div className={`${s.fila} ${s.titulos}`}>
                             <span className={s.equipos}>Equipos</span>
                             <span className={s.resultados}>Resultados</span>
+                            <span className={s.championg}>Championg</span>
+                            <span className={s.ligas}>Ligas</span>
                             <span className={s.fechaHora}>Fecha y hora</span>
                             <div></div>
                             {/* <div className={s.downArrow}>
@@ -51,6 +53,8 @@ const AgreagarDato = () => {
                                 <div key={i} className={s.fila}>
                                     <span className={s.equipos}>{e.equipoUno} - {e.equipoDos}</span>
                                     <span className={s.resultados}>{e.resultado}</span>
+                                    <span className={s.championg}>{e.championg}</span>
+                                    <span className={s.ligas}>{e.liga}</span>
                                     <span className={s.fechaHora}>{e.fechaHora.slice(2, 12)} {e.fechaHora.slice(15, e.fechaHora.length)}</span>
                                     
                                     <div>

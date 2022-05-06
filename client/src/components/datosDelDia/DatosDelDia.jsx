@@ -19,7 +19,7 @@ const DatosDelDia = () => {
         dispatch(obtenerDatos());
 
         if(bloqueado === 'true'){
-            navigate('/bloqueo')
+            navigate('/bloqueo');
         }
     }, [bloqueado])
 
@@ -30,6 +30,13 @@ const DatosDelDia = () => {
                 {
                     datos && datos.map((e, i) => (
                         <div key={i} className={s.card}>
+
+
+                            <div className={s.championgAndLiga}>
+                                <span>{e.championg}</span>
+                                <span>{e.liga}</span>
+                            </div>
+
                             <div className={s.equipos}>
                                 <span style={{color: e.equipoUnoColor}}>{e.equipoUno}</span>
                                 <span style={{color: e.equipoDosColor}}>{e.equipoDos}</span>
@@ -38,9 +45,11 @@ const DatosDelDia = () => {
                             <span className={s.resultado}>{e.resultado}</span>
                             
                             <div className={s.fechaHora}>
-                                <span>{e.fechaHora.slice(2, 12).replaceAll('-', '/')}</span>
+                                <span>{e.fechaHora.slice(7, 12).replaceAll('-', '/')}</span>
                                 <span>{e.fechaHora.slice(15, e.fechaHora.length)}</span>
                             </div>
+                            
+                            <img className={s.imgCancha} src="https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg" alt="fondo de una cancha" />
                         </div>
                     ))
                 }

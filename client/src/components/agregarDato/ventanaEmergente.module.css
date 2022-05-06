@@ -11,7 +11,7 @@
 }
 
 .ventana {
-    height: 23rem;
+    height: 25rem;
     width: 30rem;
     background-color: #15792d;
     border-radius: .6rem;
@@ -49,6 +49,10 @@
     padding: 0rem .4rem 0rem .4rem;
     border: none;
     outline: none;
+}
+
+.divInput input::placeholder {
+    color: rgb(107, 107, 107);
 }
 
 .foot {

@@ -27,7 +27,8 @@ const VentanaEmergente = () => {
         hora: '',
         equipoUnoColor: '',
         equipoDosColor: '',
-
+        championg: '',
+        liga: ''
     })
 
     React.useEffect(()=>{
@@ -40,11 +41,13 @@ const VentanaEmergente = () => {
                 hora: datoActual?.fechaHora.slice(15, datoActual.fechaHora.length),
                 equipoUnoColor: datoActual?.equipoUnoColor,
                 equipoDosColor: datoActual?.equipoDosColor,
+                championg: datoActual?.championg,
+                liga: datoActual?.liga
             })
         }
     }, [datoActual])
 
-    const {equipoUno, equipoDos, resultado, fecha, hora, equipoUnoColor, equipoDosColor} = state;
+    const {equipoUno, equipoDos, resultado, fecha, hora, equipoUnoColor, equipoDosColor, championg, liga} = state;
 
     const onChange = e => {
         setState({
@@ -66,6 +69,8 @@ const VentanaEmergente = () => {
             resultado.trim() === '' ||
             equipoUnoColor.trim() === '' ||
             equipoDosColor.trim() === '' ||
+            championg.trim() === '' ||
+            liga.trim() === '' ||
             fecha.trim() === '' || hora.trim() === ''){
                  return dispatch(registroError('Todos los campos son obligatorios'));
         }
@@ -88,6 +93,17 @@ const VentanaEmergente = () => {
                     </div>
                     
                     <form className={s.cuerpo} onSubmit={onSubmit}>
+
+                        <div className={s.divInput}>
+                            <label>Championg:</label>
+                            <input type="text" name="championg" value={championg} onChange={onChange} placeholder="championg..." />
+                        </div>
+
+                        <div className={s.divInput}>
+                            <label>Liga:</label>
+                            <input type="text" name="liga" value={liga} onChange={onChange} placeholder="liga..." />
+                        </div>
+
                         
                         <div className={s.divInput}>
                             <label>Equipo 1:</label>
@@ -96,7 +112,7 @@ const VentanaEmergente = () => {
                                 <input type="text" name="equipoUno" value={equipoUno} onChange={onChange} placeholder="Equipo 1..." />
                                 <select name="equipoUnoColor" value={equipoUnoColor !== '' ? equipoUnoColor : null} onChange={onChange}>
                                     <option value="seleccionar" selected disabled>Seleccionar</option>
-                                    <option value="#00B4D8">Azul</option>
+                                    <option value="#fff">Blanco</option>
                                     <option value="red">Rojo</option>
                                     <option value="yellow">Amarillo</option>
                                 </select>
