@@ -8,7 +8,7 @@ const router = Router();
 router.post('/',
     buscarUsuario,
     nodemailer,
-    autenticarUsuario
+    autenticarUsuario,
 )
 
 router.get('/',
