@@ -16,7 +16,6 @@ import AgreagarDato from './components/agregarDato/AgregarDato';
 import VentanaEmergente from './components/agregarDato/VentanaEmergente';
 import DatosDelDia from './components/datosDelDia/DatosDelDia';
 import TablaUsuarios from './components/tablaUsuarios/TablaUsuarios';
-import Tutoriales from './components/tutoriales/Tutoriales';
 import Fondo from './components/fondo/Fondo';
 import Bloqueo from './components/bloqueo/Bloqueo';
 
@@ -63,9 +62,6 @@ function App() {
           <Route path='/home' element={!cargando  && !autenticado ? <Navigate to='/' /> : <Home />} />
 
           <Route path='/datos-del-dia' element={!cargando  && !autenticado ? <Navigate to='/' /> : <DatosDelDia /> } />
-
-          <Route path='/tutoriales' element={!cargando && !autenticado ? <Navigate to='/' /> : <Tutoriales /> } />
-          
 
           <Route path='/chat' element={!cargando && !autenticado ? <Navigate to='/' /> : <Chats /> } />
 

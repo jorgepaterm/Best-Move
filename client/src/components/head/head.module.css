@@ -127,12 +127,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: 1.5rem; */
-    /* padding: 1rem .8rem .8rem .8rem; */
     background-color: white;
     border-radius: 0rem 0rem .5rem .5rem;
     width: 11rem;
-    height: 15rem;
+    height: 13rem;
     overflow: hidden;
     text-align: center;
     transition: all 0.3s;
@@ -144,7 +142,7 @@
 }
 
 .heightMenu {
-    height: 9rem;
+    height: 7rem;
 }
 
 .menuHidden {

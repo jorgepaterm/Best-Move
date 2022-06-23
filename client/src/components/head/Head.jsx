@@ -88,7 +88,6 @@ const Head = () => {
                             
                             <ul className={`${s.menu} ${!showMenu && s.menuHidden} ${usuario.role === 'user' && s.heightMenu}`}>
                                 <li className={s.li}><NavLink className={s.enlace} onClick={()=>setShowMenu(false)} to='/datos-del-dia'>DATOS</NavLink></li>
-                                <li className={s.li} onClick={()=>setShowMenu(false)} ><NavLink className={s.enlace} to='/tutoriales'>TUTORIALES</NavLink></li>
                                 
                                 {
                                     usuario?.role === 'admin'
