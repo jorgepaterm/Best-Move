@@ -2,19 +2,20 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 3rem;
     margin: 1rem auto 1rem auto;
-    width: 52rem;
+    width: 22rem;
+    margin-bottom: 5rem;
 }
 
 .card {
-    width: 24rem;
-    height: 16rem;
+    width: 22rem;
+    height: 12.5rem;
     /* background-image: url('https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg'); */
     background-size: contain;
     background-repeat: no-repeat;
-    margin: auto;
+    margin: 0.5rem auto auto auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -27,8 +28,8 @@
 .imgCancha {
     position: absolute;
     z-index: -1;
-    width: 24rem;
-    height: 16rem;
+    width: 20rem;
+    height: 13rem;
 }
 
 .championgAndLiga {
@@ -36,22 +37,21 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 1rem;
+    margin-top: 0.3rem;
     gap: 0.5rem;
-    color: #fff;
+    color: rgb(211, 211, 211);
 }
 
 .resultado {
     background-color: white;
     padding: .1rem .8rem .1rem .8rem;
     border-radius: .4rem;
-    margin-bottom: 1.5rem;
 }
 
 .equipos {
     color: rgb(255, 255, 0);
     /* position: absolute;
-    top: 1rem; */
+    top: 5rem; */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -60,44 +60,11 @@
 
 .fechaHora {
     position: absolute;
-    left: 1rem;
-    top: 7rem;
+    left: 1.2rem;
+    top: 0.2rem;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
     color: white;
-}
-
-@media (max-width: 900px) {
-
-    .container {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1rem;
-        width: 100VW;
-
-    }
-
-    .card {
-        width: 24rem;
-        height: 16rem;
-    }
-}
-
-@media (max-width: 520px) {
-    .card {
-        width: 24rem;
-        height: 16rem;
-    }
-
-    .imgCancha {
-        width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-width: 390px) {
-    .imgCancha {
-        width: 100vw;
-        height: auto;
-    }
+    transform: scale(0.86);
 }

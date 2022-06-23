@@ -29,27 +29,31 @@ const DatosDelDia = () => {
             <div className={s.container}>
                 {
                     datos && datos.map((e, i) => (
-                        <div key={i} className={s.card}>
+                        <div key={i}>
+                            <strong>Opcion {i+1}</strong>
+
+                            <div className={s.card}>
 
 
-                            <div className={s.championgAndLiga}>
-                                <span>{e.championg}</span>
-                                <span>{e.liga}</span>
-                            </div>
+                                <div className={s.championgAndLiga}>
+                                    <span>{e.championg}</span>
+                                    <span>{e.liga}</span>
+                                </div>
 
-                            <div className={s.equipos}>
-                                <span style={{color: e.equipoUnoColor}}>{e.equipoUno}</span>
-                                <span style={{color: e.equipoDosColor}}>{e.equipoDos}</span>
+                                <div className={s.equipos}>
+                                    <span style={{color: e.equipoUnoColor}}>{e.equipoUno}</span>
+                                    <span style={{color: e.equipoDosColor}}>{e.equipoDos}</span>
+                                </div>
+                                
+                                <span className={s.resultado}>{e.resultado}</span>
+                                
+                                <div className={s.fechaHora}>
+                                    <span>{e.dia}</span>
+                                    <span>{e.hora}</span>
+                                </div>
+                                
+                                <img className={s.imgCancha} src="https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg" alt="fondo de una cancha" />
                             </div>
-                            
-                            <span className={s.resultado}>{e.resultado}</span>
-                            
-                            <div className={s.fechaHora}>
-                                <span>{e.dia}</span>
-                                <span>{e.hora}</span>
-                            </div>
-                            
-                            <img className={s.imgCancha} src="https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg" alt="fondo de una cancha" />
                         </div>
                     ))
                 }
