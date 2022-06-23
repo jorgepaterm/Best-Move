@@ -24,38 +24,26 @@
     box-shadow: 15px 15px 15px black;
 }
 
+.divImg {
+    z-index: 1;
+}
+
 .imgLeft {
     width: 19rem;
+    filter: brightness(50%);
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .imgRight {
     width: 19rem;
+    filter: brightness(50%);
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 .imgCenter {
     width: 28rem;
-}
-
-@media (max-width: 1130px) {
-    .divImg {
-        z-index: 1;
-    }
-
-    .imgLeft {
-        width: 19rem;
-        filter: brightness(50%);
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-    .imgRight {
-        width: 19rem;
-        filter: brightness(50%);
-        position: absolute;
-        left: 0;
-        bottom: 0;
-    }
-    /* .imgCenter {
-        width: 40rem;
-    } */
 }
 
 @media (max-width: 600px) {
