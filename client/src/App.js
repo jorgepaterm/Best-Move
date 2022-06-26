@@ -19,11 +19,8 @@ import TablaUsuarios from './components/tablaUsuarios/TablaUsuarios';
 import Fondo from './components/fondo/Fondo';
 import Bloqueo from './components/bloqueo/Bloqueo';
 
-// import { useJwt } from "react-jwt";
 import tokenAuth from './config/tokenAuth';
 import {usuarioAutenticado} from './redux/actions';
-
-// import {socketContext} from './config/socket';
 
 const token = localStorage.getItem('token');
 if(token){
@@ -55,11 +52,10 @@ function App() {
           
           <Route path='/bloqueo' element={usuario?.bloqueado === 'true' ? <Bloqueo /> : <Navigate to='/' /> } />
           
-          <Route path='/' element={!autenticado && !cargando ? <Login /> : <Navigate to='/home' />} />
-          <Route path='/nueva-cuenta' element={!autenticado && !cargando  ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/home' />} />
+          <Route path='/' element={!autenticado && !cargando ? <Home /> : <Navigate to='/datos-del-dia' />} />
+          <Route path='/iniciar-sesion' element={!autenticado && !cargando ? <Login /> : <Navigate to='/datos-del-dia' />} />
+          <Route path='/nueva-cuenta' element={!autenticado && !cargando  ? <NuevaCuenta verificar={verificar} /> : <Navigate to='/datos-del-dia' />} />
           <Route path={`/verificar-correo`} element={verificar && !autenticado ? <ConfirmarCorreo/> : <Navigate to='/nueva-cuenta' />} />
-          
-          <Route path='/home' element={!cargando  && !autenticado ? <Navigate to='/' /> : <Home />} />
 
           <Route path='/datos-del-dia' element={!cargando  && !autenticado ? <Navigate to='/' /> : <DatosDelDia /> } />
 

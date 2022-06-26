@@ -1,6 +1,6 @@
 .fondo {
     /* margin-top: 3rem; */
-    background-image: url("https://www.parqueygrama.com/wp-content/uploads/2018/02/medidas-reglamentarias-para-canchas-de-futbol-5-6-7-8-9-11.jpg");
+    background-image: url("https://thumbs.dreamstime.com/b/campo-de-f%C3%BAtbol-de-la-arena-del-estadio-de-la-noche-57408942.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,4 +9,5 @@
     height: 100vh;
     z-index: -1;
     top: 0;
+    filter: brightness(0.6);
 }

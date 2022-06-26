@@ -108,7 +108,6 @@ const VentanaEmergente = () => {
                         <div className={s.divInput}>
                             <label>Equipo 1:</label>
                             <div>
-
                                 <input type="text" name="equipoUno" value={equipoUno} onChange={onChange} placeholder="Equipo 1..." />
                                 <select name="equipoUnoColor" value={equipoUnoColor !== '' ? equipoUnoColor : null} onChange={onChange}>
                                     <option value="seleccionar" selected disabled>Seleccionar</option>

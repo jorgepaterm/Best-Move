@@ -40,12 +40,15 @@
     margin-top: 0.3rem;
     gap: 0.5rem;
     color: rgb(211, 211, 211);
+    font-weight: bold;
 }
 
 .resultado {
     background-color: white;
-    padding: .1rem .8rem .1rem .8rem;
+    /* padding: .1rem .8rem .1rem .8rem; */
     border-radius: .4rem;
+    text-align: center;
+    width: 19rem;
 }
 
 .equipos {
@@ -60,11 +63,15 @@
 
 .fechaHora {
     position: absolute;
-    left: 1.2rem;
-    top: 0.2rem;
+    left: 1rem;
+    top: 4rem;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    color: white;
+    color: rgb(195, 195, 195);
     transform: scale(0.86);
+}
+
+strong {
+    color: #fff;
 }

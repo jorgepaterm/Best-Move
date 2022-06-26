@@ -2,8 +2,7 @@ import React, {useState} from "react";
 import s from './home.module.css';
 import IconoChat from '../iconoChat/IconoChat';
 import {useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import Head from '../head/Head';
+import {useNavigate, NavLink} from 'react-router-dom';
 import imagenUno from './images/imagen1.jpeg';
 import imagenDos from './images/imagen2.jpeg';
 import imagenTres from './images/imagen3.jpeg';
@@ -40,38 +39,32 @@ const Home = () => {
     }, []);
 
     return (
-        <>
+            <>
 
-            {
-                autenticado && bloqueado === 'false'
-                ? <>
-                <Head />
-                
-                <div className={s.container}>
+            <ul id={s.listaInicio}>
+                <li><NavLink className={s.navLink} to={'/nueva-cuenta'}>Registro</NavLink></li>
+                <li><NavLink className={s.navLink} to={'/iniciar-sesion'}>Entrar</NavLink></li>
+            </ul>
+            
+            <div className={s.container}>
 
-                    <div className={s.carousel}>
-                        <div>
-                            <img className={s.imgLeft} src={posicion === 0 ? arrayImagenes[arrayImagenes.length-1] : arrayImagenes[posicion-1]} alt="imagen de anuncio" />
-                        </div>
-                        
-                        <div className={s.divImg}>
-                            <img className={s.imgCenter} src={arrayImagenes[posicion]} alt="imagen de anuncio" />
-                        </div>
-                        
-                        <div>
-                            <img className={s.imgRight} src={posicion === arrayImagenes.length-1 ? arrayImagenes[0] : arrayImagenes[posicion+1]} alt="imagen de anuncio" />
-                        </div>
+                <div className={s.carousel}>
+                    <div>
+                        <img className={s.imgLeft} src={posicion === 0 ? arrayImagenes[arrayImagenes.length-1] : arrayImagenes[posicion-1]} alt="imagen de anuncio" />
                     </div>
                     
+                    <div className={s.divImg}>
+                        <img className={s.imgCenter} src={arrayImagenes[posicion]} alt="imagen de anuncio" />
+                    </div>
+                    
+                    <div>
+                        <img className={s.imgRight} src={posicion === arrayImagenes.length-1 ? arrayImagenes[0] : arrayImagenes[posicion+1]} alt="imagen de anuncio" />
+                    </div>
                 </div>
+                
+            </div>
 
-                <IconoChat />
-                </>
-
-                : null
-            }
-
-        </>
+            </>
     )
 };
 

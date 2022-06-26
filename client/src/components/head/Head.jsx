@@ -94,7 +94,7 @@ const Head = () => {
                             </ul>
 
                             <li className={s.li}>
-                                <NavLink className={s.enlace} to='/home'>
+                                <NavLink className={s.enlace} to='/datos-del-dia'>
                                     <span className={s.saludo}>Best Move</span>
                                 </NavLink>
                             </li>

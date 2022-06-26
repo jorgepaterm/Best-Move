@@ -177,7 +177,7 @@ const NuevaCuenta = ({verificar}) => {
                 </form>
 
 
-                <NavLink to='/' className={s.NavLink}>Iniciar sesión</NavLink>
+                <NavLink to='/iniciar-sesion' className={s.NavLink}>Iniciar sesión</NavLink>
 
             </div>
         </div>
