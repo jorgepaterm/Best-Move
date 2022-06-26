@@ -7,13 +7,13 @@
     align-items: center;
     background-color: rgba(24, 90, 24, 0.42);
     /* backdrop-filter: blur(4px); */
-    height: 4.5rem;
+    height: 4rem;
     z-index: 2;
 }
 .headDos {
     background-color: transparent;
     width: 100vw;
-    height: 4.5rem;
+    height: 4rem;
 }
 
 .enlaces {
@@ -21,6 +21,15 @@
     justify-content: space-between;
     width: 100%;
     margin: 0rem 1rem;
+}
+
+.stadoActivo {
+    background: rgb(226,226,226);
+    background: linear-gradient(180deg, rgba(41,158,51,1) 23%, rgba(28,105,35,1) 66%);
+    padding: 0.5rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 /* .enlaceChat {
@@ -107,7 +116,7 @@
     position: relative;
 }
 .saludo {
-    color: black;
+    color: #fff;
     font-weight: bold;
     font-size: 1.1rem;
 }
@@ -122,8 +131,8 @@
 
 .menu {
     position: absolute;
-    top: 3.5rem;
-    right: .1rem;
+    top: 4rem;
+    left: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;

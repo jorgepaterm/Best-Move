@@ -55,7 +55,7 @@ const ConfirmarCorreo = () => {
 
         // enviar formulario
         if(usuario.login){
-            console.log(usuario.email, usuario);
+            // console.log(usuario.email, usuario);
             dispatch(autenticarUsuario(usuario));
         }
         else {
