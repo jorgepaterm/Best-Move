@@ -6,6 +6,7 @@ import {traerChat, traerContactos, usuarioAutenticado, addNewMessage} from '../.
 // import {socketContext} from '../../config/socket';
 import {useSelector, useDispatch} from 'react-redux';
 import Head from '../head/Head';
+import Nav from '../nav/Nav';
 
 const Chats = () => {
 
@@ -39,6 +40,8 @@ const Chats = () => {
             {usuario?.role === 'admin' && <Contactos setContacto={setContacto} />}
                 <Chat contacto={contacto} />
             </div>
+
+            <Nav />
         </>
     )
 }

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import s from './home.module.css';
-import IconoChat from '../iconoChat/IconoChat';
 import {useSelector} from 'react-redux';
 import {useNavigate, NavLink} from 'react-router-dom';
 import imagenUno from './images/imagen1.jpeg';

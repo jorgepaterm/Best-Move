@@ -1,8 +1,7 @@
 import React from "react";
-import IconoChat from "../iconoChat/IconoChat";
-import {NavLink} from 'react-router-dom';
 import s from './bloqueo.module.css';
 import Head from "../head/Head";
+import {NavLink} from 'react-router-dom';
 
 const Bloqueo = () => {
 
@@ -16,7 +15,6 @@ const Bloqueo = () => {
                 </div>
             </div>
 
-            <IconoChat />
         </>
     )
 }

@@ -3,8 +3,8 @@ import s from './datosDelDia.module.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {obtenerDatos} from '../../redux/actions';
-import IconoChat from '../iconoChat/IconoChat';
 import Head from '../head/Head';
+import Nav from '../nav/Nav';
 
 const DatosDelDia = () => {
 
@@ -58,7 +58,7 @@ const DatosDelDia = () => {
                     ))
                 }
             </div>
-            <IconoChat />
+            <Nav />
         </>
     )
 }

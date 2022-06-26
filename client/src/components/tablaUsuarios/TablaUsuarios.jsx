@@ -4,8 +4,8 @@ import {obtenerUsuarios, blockUser} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import VentanaEmergenteEditClave from './VentanaEmergente';
-import IconoChat from '../iconoChat/IconoChat';
 import Head from '../head/Head';
+import Nav from '../nav/Nav';
 
 const TablaUsuarios = () => {
 
@@ -86,7 +86,7 @@ const TablaUsuarios = () => {
                     }
                 </div>
             </div>
-            <IconoChat />
+            <Nav />
         </>
     )
 }

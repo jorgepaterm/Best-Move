@@ -1,0 +1,51 @@
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    background-color: rgb(47, 151, 47);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    margin: 0 1rem;
+}
+
+.li {
+    list-style: none;
+}
+
+.divSvg {
+    margin-top: 0.4rem;
+}
+
+.enlaceChat {
+    text-decoration: none;
+    color: black;
+    padding: 0%;
+    margin: 0%;
+    position: relative;
+}
+.enlaceChat::before {
+    content: '';
+    display: block;
+    position: absolute;
+    padding: .5rem;
+    border-radius: 100%;
+    background-color: rgb(240, 81, 81);
+    left: -1.1rem;
+    top: -0.5rem;
+}
+
+.enlace {
+    text-decoration: none;
+    color: black;
+    padding: 0%;
+    margin: 0%;
+    position: relative;
+}

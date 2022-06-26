@@ -3,8 +3,8 @@ import {Outlet, NavLink, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {obtenerDatos, eliminarDato, stateEditarDato} from '../../redux/actions';
 import s from './agregarDato.module.css';
-import IconoChat from '../iconoChat/IconoChat';
 import Head from '../head/Head';
+import Nav from '../nav/Nav';
 
 
 const AgreagarDato = () => {
@@ -75,7 +75,7 @@ const AgreagarDato = () => {
                     </div>
                 </div>
             </div>
-            <IconoChat />
+            <Nav />
         </>
     )
 }

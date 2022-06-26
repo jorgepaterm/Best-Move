@@ -7,13 +7,13 @@
     align-items: center;
     background-color: rgba(24, 90, 24, 0.42);
     /* backdrop-filter: blur(4px); */
-    height: 4rem;
+    height: 3.5rem;
     z-index: 2;
 }
 .headDos {
     background-color: transparent;
     width: 100vw;
-    height: 4rem;
+    height: 3.5rem;
 }
 
 .enlaces {
@@ -131,7 +131,7 @@
 
 .menu {
     position: absolute;
-    top: 4rem;
+    top: 3.5rem;
     left: 1rem;
     display: flex;
     flex-direction: column;
