@@ -18,6 +18,7 @@ import DatosDelDia from './components/datosDelDia/DatosDelDia';
 import TablaUsuarios from './components/tablaUsuarios/TablaUsuarios';
 import Fondo from './components/fondo/Fondo';
 import Bloqueo from './components/bloqueo/Bloqueo';
+import Perfil from './components/perfil/Perfil';
 
 import tokenAuth from './config/tokenAuth';
 import {usuarioAutenticado} from './redux/actions';
@@ -60,6 +61,8 @@ function App() {
           <Route path='/datos-del-dia' element={!cargando  && !autenticado ? <Navigate to='/' /> : <DatosDelDia /> } />
 
           <Route path='/chat' element={!cargando && !autenticado ? <Navigate to='/' /> : <Chats /> } />
+
+          <Route path='/mi-perfil' element={!cargando && !autenticado ? <Navigate to='/' /> : <Perfil /> } />
 
           <Route path='/tabla-usuarios/*' element={!autenticado && !cargando && usuario?.role !== 'admin' ? <Navigate to='/' /> : <TablaUsuarios /> } />
 
